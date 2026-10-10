@@ -1,0 +1,7 @@
+pandas
+requests
+plotnine
+matplotlib
+truststore
+openpyxl
+xlrd

@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Generated outputs: every run re-downloads and rebuilds these.
+# Remove this line if you want to commit charts to the repo.
+runs/
+
+# Local download cache (EU auction pages); rebuilt automatically.
+cache/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

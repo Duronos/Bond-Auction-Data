@@ -1,0 +1,53 @@
+"""Norway: Norges Bank primary-market transactions for government bonds (NGB) and bills (NTB)."""
+
+import io
+import warnings
+
+import pandas as pd
+
+from common import Country
+from countries._http import get
+
+BASE = "https://www.norges-bank.no/globalassets/marketdata/moa/statsgjeld/"
+FILES = [
+    "primarymarketgovtdebttransactions_ngb_no.xlsx",  # bonds
+    "primarymarketgovtdebttransactions_ntb_no.xlsx",  # bills
+]
+
+
+def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    frames = []
+    for name in FILES:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")  # "Workbook contains no default style"
+            frames.append(pd.read_excel(io.BytesIO(get(BASE + name).content), header=0))
+    df = pd.concat(frames, ignore_index=True)
+
+    # Issuance auctions only ("Utstedelsesauksjon"); the files also hold
+    # syndications and changes in the state's own holdings.
+    df = df[df["Type utstedelse"].astype(str).str.strip() == "Utstedelsesauksjon"]
+
+    bids = pd.to_numeric(df["Budvolum"], errors="coerce")             # bid volume
+    allocated = pd.to_numeric(df["Allokert volum"], errors="coerce")  # allocated volume
+    return pd.DataFrame(
+        {
+            "auction_date": pd.to_datetime(df["Transaksjonsdato"], errors="coerce"),
+            "maturity_date": pd.to_datetime(df["Forfallsdato"], errors="coerce"),
+            "bid_to_cover": bids / allocated.where(allocated > 0),
+            "accepted": allocated * 1e6,  # NOK millions
+            "auction_yield": pd.to_numeric(df["Effektiv Rente"], errors="coerce"),
+            # Norges Bank runs the auctions as the state's agent but doesn't buy at them.
+            "cb_accepted": float("nan"),
+        }
+    )
+
+
+COUNTRY = Country(
+    code="norway",
+    name="Norway",
+    fetch=fetch,
+    volume_label="Amount allocated (NOK billions)",
+    volume_divisor=1e9,
+    source="Norges Bank",
+    yield_note="Effective yield.",
+)
