@@ -8,7 +8,8 @@ venv/
 # Remove this line if you want to commit charts to the repo.
 runs/
 
-# Local download cache (EU auction pages); rebuilt automatically.
+# Local download cache (EU and South Korea auction pages, Slovak PDF results,
+# Lithuanian maturities); rebuilt automatically.
 cache/
 
 # Editor / OS

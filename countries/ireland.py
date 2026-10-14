@@ -8,6 +8,7 @@ from common import Country
 from countries._http import find_links, get
 
 PAGE = "https://www.ntma.ie/business-areas/funding-and-debt-management/government-securities"
+BILLS_FILE = "https://assets.ntma.ie/general/Treasury-Bills-Issuance-2009-2022-Sep-2022.xlsx"
 
 
 def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
@@ -36,10 +37,19 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
         )
     )
 
-    # --- Treasury bills (the published history stops in 2022).
-    bill_url = find_links(PAGE, r"Treasury-Bills-Issuance.*\.xlsx$")[0]
-    bills = pd.read_excel(io.BytesIO(get(bill_url).content), header=None)
-    frames.append(parse_bills(bills))
+    # --- Treasury bills (Ireland stopped issuing them after 2022, so this
+    #     file never changes). In October 2026 the NTMA removed its link from
+    #     the page, but the file is still online, so fall back to its known
+    #     address; if that goes too, carry on with bonds only.
+    try:
+        bill_url = find_links(PAGE, r"Treasury-Bills-Issuance.*\.xlsx$")[0]
+    except RuntimeError:
+        bill_url = BILLS_FILE
+    try:
+        bills = pd.read_excel(io.BytesIO(get(bill_url).content), header=None)
+        frames.append(parse_bills(bills))
+    except Exception as exc:
+        print(f"  note: Irish T-bill file unavailable ({exc!r}); using bonds only")
 
     df = pd.concat(frames, ignore_index=True)
     # The ECB/Central Bank of Ireland are barred from buying at primary auctions.

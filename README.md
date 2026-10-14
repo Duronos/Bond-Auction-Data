@@ -18,7 +18,7 @@ python treasurydata.py
 Each run creates a dated folder:
 
 ```
-runs/2026-10-10_124747_20y/
+runs/2026-10-22_173133_20y/
   auction_totals.csv          auctions per country and maturity bucket
   us/  canada/  france/ ...   one folder per country: charts + monthly CSV
   global/                     every country together
@@ -44,12 +44,12 @@ Countries define these measures slightly differently (e.g. clearing vs average
 yield), so compare **trends** across countries more than exact levels.
 
 On the global charts each country has a fixed colour and line style (eight
-colours × solid/dashed/dotted), so it looks the same on every chart and run.
+colours × solid/dashed/dotted/dash-dot), so it looks the same on every chart and run.
 The `_grid` versions give each country its own small panel instead.
 
 ## Example charts
 
-These come from the run of 10 October 2026. Each run writes its own copies to
+These come from the run of 22 October 2026. Each run writes its own copies to
 `runs/`; the images here are just a snapshot for this page.
 
 **Demand at auction, all countries.** Bid-to-cover by maturity, one line per
@@ -78,7 +78,7 @@ the ECB raised rates in 2022-23.
 
 ## Coverage
 
-### Included (21 countries + the EU)
+### Included (24 countries + the EU)
 
 | Country | Source | From | Bid-to-cover | Yield used | Central bank share | Notes |
 |---|---|---|:-:|---|:-:|---|
@@ -89,20 +89,23 @@ the ECB raised rates in 2022-23.
 | Japan | Ministry of Finance | 2006 | ✓ | Clearing (yield at lowest accepted price) | | Published with a ~1 month lag |
 | Austria | OeKB (auction agent) | 2007 | | Issue yield (as published) | | Bonds only; total bids not published |
 | Belgium | Belgian Debt Agency | 2006 | ✓ | Average (weighted average yield) | | Parsed from PDFs |
-| Czech Republic | Czech National Bank | 2022 | ✓ | Clearing (maximum accepted yield) | | Downloadable history starts in 2022 |
-| Denmark | Danmarks Nationalbank | 2008 | ✓ | Clearing (cut-off price/rate) | | Files run to the end of last year |
+| Czech Republic | Czech National Bank | 2006 | ✓ | Clearing (maximum accepted yield); bills: average | | T-bill data ends in 2021 (no later file published); bill cover = bids ÷ amount offered |
+| Denmark | Danmarks Nationalbank | 2008 | ✓ | Clearing (cut-off price/rate) | | Current year read from the results pages |
 | Finland | State Treasury open data API | 2006 | ✓ | Issue yield (as published) | | Mostly syndications before 2019 |
 | France | Agence France Trésor | 2006 | ✓ | Average (weighted average rate) | | |
 | Greece | Public Debt Management Agency | 2008 | ✓ | Uniform price (clearing = average) | | Bills only (bonds mostly syndicated) |
 | Hungary | ÁKK (via its website's data API) | 2006 | ✓ | Clearing (maximum accepted yield) | | |
 | Ireland | NTMA | 2009 | ✓ | Issue yield (as published) | | Bill history ends in 2022 |
 | Italy | Banca d'Italia | 2006 | ✓ | Allotment yield (see note) | | |
+| Lithuania | Nasdaq Baltic (Vilnius auctions) | 2008 | ✓ | Clearing (maximum accepted yield) | | Maturities looked up per bond on Nasdaq Baltic |
 | Netherlands | Dutch State Treasury Agency | 2007 | | Issue yield (as published) | | Bids not published |
 | Norway | Norges Bank | 2006 | ✓ | Issue yield (as published) | | |
 | Poland | Ministry of Finance | 2006 | ✓ | Clearing (maximum accepted yield) | | |
+| Slovakia | ARDAL | 2009 | ✓ | Clearing (maximum accepted yield) | | Bonds only; parsed from per-auction PDFs. **Yields from 2017 only**: the 2009–2016 PDFs report prices, not yields (bid-to-cover and volume cover the full period) |
 | Slovenia | Ministry of Finance | 2007 | | Issue rate (as published) | | Bills only; bids not published |
+| South Korea | Ministry of Economy and Finance (KTB site) | 2018 | ✓ | Clearing (highest accepted rate) | | KTB bonds only; the English results pages start in 2018 |
 | Spain | Tesoro Público | 2025 | ✓ | Clearing (stop-out/marginal rate) | | Only the last two years are published in bulk |
-| Switzerland | Federal Finance Administration / SNB | 2010 | ✓ | Uniform price (clearing = average) | | Bonds only |
+| Switzerland | Federal Finance Administration / SNB | 2010 | ✓ | Uniform price (clearing = average) | | Bonds, plus money market claims (bills) from 2012 |
 | **European Union** (not a country) | European Commission | 2021 | ✓ | Average (weighted average yield) | | EU-Bonds and EU-Bills; see below |
 
 **European Union.** The EU borrows in its own name (e.g. for NextGenerationEU),
@@ -129,7 +132,7 @@ fetches a few hundred pages slowly (the site rate-limits) and caches them in
 Inflation-linked and floating-rate securities are excluded everywhere (as US
 TIPS and FRNs are), because they don't quote comparable nominal yields.
 
-### Not included yet (17 countries)
+### Not included yet (14 countries)
 
 | Country | Why |
 |---|---|
@@ -137,15 +140,12 @@ TIPS and FRNs are), because they don't quote comparable nominal yields.
 | New Zealand | Debt Management site sits behind a browser-only bot check (Cloudflare) |
 | Sweden | Riksgälden's auction statistics are only in an interactive QlikView dashboard |
 | Portugal | IGCP's site blocks automated requests (HTTP 403) |
-| South Korea | Results are one file per auction; bulk data needs a free Bank of Korea ECOS API key |
 | Mexico | Full history needs a free Banxico SIE API token |
 | Turkey | Results are one PDF per auction; bulk data needs a free CBRT EVDS API key |
 | Israel | Results are published on Bloomberg; no bulk public download found |
 | Chile | Historical files on the Finance Ministry's old site stop in 2020 |
 | Colombia | No bulk download of TES auction results found |
 | Iceland | Results are one web page/PDF per auction |
-| Slovakia | Results are one PDF per auction |
-| Lithuania | Nasdaq Baltic only offers the latest auctions, without maturities |
 | Latvia | Results are only in individual news releases |
 | Estonia | Very little domestic auction issuance |
 | Luxembourg | Issues by syndication, not auction |
@@ -162,7 +162,8 @@ countries/
   __init__.py        list of countries to run
   _http.py           download helpers
   <country>.py       one loader per country (eu.py for the European Union)
-cache/               downloaded EU auction pages (gitignored)
+cache/               downloaded auction pages and lookups for the EU, South Korea,
+                     Slovakia and Lithuania (gitignored); rebuilt automatically
 docs/images/         example charts shown in this README
 ```
 
@@ -186,7 +187,11 @@ Charts for any measure a country doesn't publish are skipped automatically.
 ## Caveats
 
 - Several sources aren't formal APIs (Hungary's website data endpoint, Belgium's
-  PDFs, Greece's web tables), so a site redesign can break a loader. When that
+  and Slovakia's PDFs, Greece's web tables, the EU's and South Korea's
+  per-auction pages), so a site redesign can break a loader. When that
   happens the run reports the failure for that country and continues.
+- The first run downloads a few thousand pages and PDFs for the EU, South Korea
+  and Slovakia, pacing requests to respect the sites' limits, so it takes
+  about half an hour. Later runs read `cache/` and only fetch new auctions.
 - Volumes are in each country's own currency, so the global charts compare
   bid-to-cover, yields and central bank share, not volume.

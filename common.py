@@ -211,9 +211,9 @@ SERIES_COLORS = [
 # they carry the three maturity buckets.
 BUCKET_COLORS = dict(zip(BUCKETS, SERIES_COLORS[:3]))
 # More than eight series can't each get a distinct colour, so the global
-# charts pair the eight colours with three line styles: 8 x 3 = 24 unique
-# combinations, enough for every country.
-LINE_STYLES = ["solid", "dashed", "dotted"]
+# charts pair the eight colours with four line styles: 8 x 4 = 32 unique
+# combinations, enough for every country (25 today).
+LINE_STYLES = ["solid", "dashed", "dotted", "dashdot"]
 
 
 def country_styles(countries: list[str]) -> tuple[dict, dict]:
