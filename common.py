@@ -148,6 +148,10 @@ def make_monthly_data(df: pd.DataFrame, volume_divisor: float) -> pd.DataFrame:
     for col in EXTRA_SUM_COLUMNS:
         if col in df.columns:
             aggs[col] = (col, "sum")
+    # What the issuer bought at its own auctions (Czech T-bills), kept out of
+    # bid-to-cover and volume but recorded in the monthly CSV.
+    if "issuer_retained" in df.columns:
+        aggs["issuer_retained"] = ("issuer_retained", lambda s: s.sum(min_count=1))
 
     # One row per (month, bucket). observed=True skips bucket/month
     # combinations with no auctions instead of creating empty rows.

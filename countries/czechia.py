@@ -65,9 +65,22 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     ]
 
     bills = read(BILLS_HISTORY, header=1)
-    requested = pd.to_numeric(column(bills, "Reguested"), errors="coerce")  # sic
-    offered = pd.to_numeric(column(bills, "Auctioned"), errors="coerce")
-    sold = pd.to_numeric(column(bills, "Sold"), errors="coerce")
+    num = lambda name: pd.to_numeric(column(bills, name), errors="coerce")
+    # In 2020-21 the Ministry of Finance bought large amounts of its own bills
+    # (e.g. 150bn of 155bn sold on 11 March 2021). Its bids are in "Requested"
+    # and its purchases in "Sold", so take them out of both to measure
+    # investors only, as the bond figures already do; the amount is kept in
+    # its own column.
+    retained = num("Issuer retained").fillna(0)
+    investor_bids = num("Reguested") - retained  # sic
+    investor_sold = num("Sold") - retained
+    offered = num("Auctioned")
+    # Divide by the larger of the amount announced and the amount sold:
+    # "Auctioned" is only indicative (2.5bn announced, 10bn sold is common),
+    # while in 2016-20 the Ministry often sold a sliver of what was bid
+    # (e.g. 15m of 7,515m at negative yields), where bids / sold would give
+    # ratios of several hundred that reflect its choices, not demand.
+    cover_base = pd.concat([offered, investor_sold], axis=1).max(axis=1)
     frames.append(
         pd.DataFrame(
             {
@@ -75,14 +88,11 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
                 # the window anyway.
                 "auction_date": pd.to_datetime(column(bills, "Auction Date"), errors="coerce"),
                 "maturity_date": pd.to_datetime(column(bills, "Maturity Date"), errors="coerce"),
-                # Bids over the amount offered, not sold: in 2016-20 the
-                # Ministry often sold a sliver of what was bid (e.g. 15m of
-                # 7,515m requested at negative yields), so bids / sold gives
-                # ratios of several hundred that reflect its choices, not demand.
-                "bid_to_cover": requested / offered.where(offered > 0),
-                "accepted": sold * 1e6,  # CZK millions
+                "bid_to_cover": investor_bids / cover_base.where(cover_base > 0),
+                "accepted": investor_sold * 1e6,  # CZK millions
+                "issuer_retained": retained * 1e6,
                 # Only the average yield is published for bills (in percent).
-                "auction_yield": pd.to_numeric(column(bills, "Average Yield"), errors="coerce"),
+                "auction_yield": num("Average Yield"),
             }
         )
     )

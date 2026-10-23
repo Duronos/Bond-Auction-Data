@@ -583,7 +583,7 @@ python treasurydata.py
 Each run creates a dated folder:
 
 ```
-runs/2026-10-22_211145_20y/
+runs/2026-10-22_213542_20y/
   auction_totals.csv          auctions per country and maturity bucket
   us/  canada/  france/ ...   one folder per country: charts + CSVs
   global/                     every country together
@@ -665,7 +665,7 @@ the ECB raised rates in 2022-23.
 | Japan | Ministry of Finance | 2006 | ✓ | Clearing (yield at lowest accepted price) | | Published with a ~1 month lag |
 | Austria | OeKB (auction agent) | 2007 | | Issue yield (as published) | | Bonds only; total bids not published |
 | Belgium | Belgian Debt Agency | 2006 | ✓ | Average (weighted average yield) | | Parsed from PDFs |
-| Czech Republic | Czech National Bank | 2006 | ✓ | Clearing (maximum accepted yield); bills: average | | T-bill data ends in 2021 (no later file published); bill cover = bids ÷ amount offered |
+| Czech Republic | Czech National Bank | 2006 | ✓ | Clearing (maximum accepted yield); bills: average | | T-bill data ends in 2021 (no later file published). The Ministry of Finance's purchases of its own bills (large in 2020–21) are left out of bid-to-cover and volume, as for bonds, and kept in an `issuer_retained` column; bill cover = investor bids ÷ the larger of the amount offered and the amount sold |
 | Denmark | Danmarks Nationalbank | 2008 | ✓ | Clearing (cut-off price/rate) | | Current year read from the results pages |
 | Finland | State Treasury open data API | 2006 | ✓ | Issue yield (as published) | | Mostly syndications before 2019 |
 | France | Agence France Trésor | 2006 | ✓ | Average (weighted average rate) | | |

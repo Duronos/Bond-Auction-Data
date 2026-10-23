@@ -1,6 +1,6 @@
 # Results: run of 22 October 2026
 
-A copy of the latest run (`runs/2026-10-22_211145_20y/`): one folder per country with its
+A copy of the latest run (`runs/2026-10-22_213542_20y/`): one folder per country with its
 charts and data, plus [`global/`](global/) (every country together) and
 [`auction_totals.csv`](auction_totals.csv) (auctions per country and maturity
 bucket).
