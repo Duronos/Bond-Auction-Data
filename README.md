@@ -10,7 +10,7 @@ For the **last 12 months** nothing is averaged: every single auction is shown
 as a dot, next to the **daily market yield** for the same maturity wherever the
 country publishes one, so moves between auctions show up too.
 
-![10-year government bond yields: daily market vs every auction, last 12 months](results/global/global_10year_recent_yield_12m.png)
+![10-year government bond yields: daily market vs every auction, last 12 months](results/auctions/global/global_10year_recent_yield_12m.png)
 
 ## Results by country
 
@@ -23,21 +23,25 @@ data file is also in [`results/`](results/).
 
 **Every auction vs the daily market yield, last 12 months**
 
-![United States: Every auction vs the daily market yield, last 12 months](results/us/us_recent_yield_12m.png)
+![United States: Every auction vs the daily market yield, last 12 months](results/auctions/us/us_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![United States: Daily market yields by maturity, last 12 months](results/market_yields/us/us_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![United States: Bid-to-cover at every auction, last 12 months](results/us/us_recent_bid_to_cover_12m.png)
+![United States: Bid-to-cover at every auction, last 12 months](results/auctions/us/us_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![United States: Auction yields, 20 years (3-month average)](results/us/us_auction_yield_20y.png)
+![United States: Auction yields, 20 years (3-month average)](results/auctions/us/us_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![United States: Bid-to-cover, 20 years (3-month average)](results/us/us_bid_to_cover_20y.png)
+![United States: Bid-to-cover, 20 years (3-month average)](results/auctions/us/us_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/us/us_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/us/us_market_yields_12m.csv) · [monthly data, 20 years](results/us/us_auction_20y_monthly.csv) · [volume chart](results/us/us_accepted_20y.png) · [central bank share chart](results/us/us_central_bank_share_20y.png) · [non-dealer share chart](results/us/us_nondealer_share_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/us/us_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/us/us_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/us/us_auction_20y_monthly.csv) · [volume chart](results/auctions/us/us_accepted_20y.png) · [central bank share chart](results/auctions/us/us_central_bank_share_20y.png) · [non-dealer share chart](results/auctions/us/us_nondealer_share_20y.png)
 
 </details>
 
@@ -46,21 +50,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/u
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Canada: Every auction vs the daily market yield, last 12 months](results/canada/canada_recent_yield_12m.png)
+![Canada: Every auction vs the daily market yield, last 12 months](results/auctions/canada/canada_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Canada: Daily market yields by maturity, last 12 months](results/market_yields/canada/canada_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Canada: Bid-to-cover at every auction, last 12 months](results/canada/canada_recent_bid_to_cover_12m.png)
+![Canada: Bid-to-cover at every auction, last 12 months](results/auctions/canada/canada_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Canada: Auction yields, 20 years (3-month average)](results/canada/canada_auction_yield_20y.png)
+![Canada: Auction yields, 20 years (3-month average)](results/auctions/canada/canada_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Canada: Bid-to-cover, 20 years (3-month average)](results/canada/canada_bid_to_cover_20y.png)
+![Canada: Bid-to-cover, 20 years (3-month average)](results/auctions/canada/canada_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/canada/canada_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/canada/canada_market_yields_12m.csv) · [monthly data, 20 years](results/canada/canada_auction_20y_monthly.csv) · [volume chart](results/canada/canada_accepted_20y.png) · [central bank share chart](results/canada/canada_central_bank_share_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/canada/canada_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/canada/canada_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/canada/canada_auction_20y_monthly.csv) · [volume chart](results/auctions/canada/canada_accepted_20y.png) · [central bank share chart](results/auctions/canada/canada_central_bank_share_20y.png)
 
 </details>
 
@@ -69,21 +77,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/c
 
 **Every auction vs the daily market yield, last 12 months**
 
-![United Kingdom: Every auction vs the daily market yield, last 12 months](results/uk/uk_recent_yield_12m.png)
+![United Kingdom: Every auction vs the daily market yield, last 12 months](results/auctions/uk/uk_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![United Kingdom: Daily market yields by maturity, last 12 months](results/market_yields/uk/uk_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![United Kingdom: Bid-to-cover at every auction, last 12 months](results/uk/uk_recent_bid_to_cover_12m.png)
+![United Kingdom: Bid-to-cover at every auction, last 12 months](results/auctions/uk/uk_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![United Kingdom: Auction yields, 20 years (3-month average)](results/uk/uk_auction_yield_20y.png)
+![United Kingdom: Auction yields, 20 years (3-month average)](results/auctions/uk/uk_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![United Kingdom: Bid-to-cover, 20 years (3-month average)](results/uk/uk_bid_to_cover_20y.png)
+![United Kingdom: Bid-to-cover, 20 years (3-month average)](results/auctions/uk/uk_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/uk/uk_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/uk/uk_market_yields_12m.csv) · [monthly data, 20 years](results/uk/uk_auction_20y_monthly.csv) · [volume chart](results/uk/uk_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/uk/uk_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/uk/uk_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/uk/uk_auction_20y_monthly.csv) · [volume chart](results/auctions/uk/uk_accepted_20y.png)
 
 </details>
 
@@ -92,21 +104,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/u
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Germany: Every auction vs the daily market yield, last 12 months](results/germany/germany_recent_yield_12m.png)
+![Germany: Every auction vs the daily market yield, last 12 months](results/auctions/germany/germany_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Germany: Daily market yields by maturity, last 12 months](results/market_yields/germany/germany_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Germany: Bid-to-cover at every auction, last 12 months](results/germany/germany_recent_bid_to_cover_12m.png)
+![Germany: Bid-to-cover at every auction, last 12 months](results/auctions/germany/germany_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Germany: Auction yields, 20 years (3-month average)](results/germany/germany_auction_yield_20y.png)
+![Germany: Auction yields, 20 years (3-month average)](results/auctions/germany/germany_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Germany: Bid-to-cover, 20 years (3-month average)](results/germany/germany_bid_to_cover_20y.png)
+![Germany: Bid-to-cover, 20 years (3-month average)](results/auctions/germany/germany_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/germany/germany_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/germany/germany_market_yields_12m.csv) · [monthly data, 20 years](results/germany/germany_auction_20y_monthly.csv) · [volume chart](results/germany/germany_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/germany/germany_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/germany/germany_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/germany/germany_auction_20y_monthly.csv) · [volume chart](results/auctions/germany/germany_accepted_20y.png)
 
 </details>
 
@@ -115,21 +131,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/g
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Japan: Every auction vs the daily market yield, last 12 months](results/japan/japan_recent_yield_12m.png)
+![Japan: Every auction vs the daily market yield, last 12 months](results/auctions/japan/japan_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Japan: Daily market yields by maturity, last 12 months](results/market_yields/japan/japan_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Japan: Bid-to-cover at every auction, last 12 months](results/japan/japan_recent_bid_to_cover_12m.png)
+![Japan: Bid-to-cover at every auction, last 12 months](results/auctions/japan/japan_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Japan: Auction yields, 20 years (3-month average)](results/japan/japan_auction_yield_20y.png)
+![Japan: Auction yields, 20 years (3-month average)](results/auctions/japan/japan_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Japan: Bid-to-cover, 20 years (3-month average)](results/japan/japan_bid_to_cover_20y.png)
+![Japan: Bid-to-cover, 20 years (3-month average)](results/auctions/japan/japan_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/japan/japan_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/japan/japan_market_yields_12m.csv) · [monthly data, 20 years](results/japan/japan_auction_20y_monthly.csv) · [volume chart](results/japan/japan_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/japan/japan_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/japan/japan_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/japan/japan_auction_20y_monthly.csv) · [volume chart](results/auctions/japan/japan_accepted_20y.png)
 
 </details>
 
@@ -138,13 +158,13 @@ More: [every auction, last 12 months (with the market yield that day)](results/j
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Austria: Every auction vs the daily market yield, last 12 months](results/austria/austria_recent_yield_12m.png)
+![Austria: Every auction vs the daily market yield, last 12 months](results/auctions/austria/austria_recent_yield_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Austria: Auction yields, 20 years (3-month average)](results/austria/austria_auction_yield_20y.png)
+![Austria: Auction yields, 20 years (3-month average)](results/auctions/austria/austria_auction_yield_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/austria/austria_recent_auctions_12m.csv) · [monthly data, 20 years](results/austria/austria_auction_20y_monthly.csv) · [volume chart](results/austria/austria_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/austria/austria_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/austria/austria_auction_20y_monthly.csv) · [volume chart](results/auctions/austria/austria_accepted_20y.png)
 
 </details>
 
@@ -153,21 +173,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/a
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Belgium: Every auction vs the daily market yield, last 12 months](results/belgium/belgium_recent_yield_12m.png)
+![Belgium: Every auction vs the daily market yield, last 12 months](results/auctions/belgium/belgium_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Belgium: Daily market yields by maturity, last 12 months](results/market_yields/belgium/belgium_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Belgium: Bid-to-cover at every auction, last 12 months](results/belgium/belgium_recent_bid_to_cover_12m.png)
+![Belgium: Bid-to-cover at every auction, last 12 months](results/auctions/belgium/belgium_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Belgium: Auction yields, 20 years (3-month average)](results/belgium/belgium_auction_yield_20y.png)
+![Belgium: Auction yields, 20 years (3-month average)](results/auctions/belgium/belgium_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Belgium: Bid-to-cover, 20 years (3-month average)](results/belgium/belgium_bid_to_cover_20y.png)
+![Belgium: Bid-to-cover, 20 years (3-month average)](results/auctions/belgium/belgium_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/belgium/belgium_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/belgium/belgium_market_yields_12m.csv) · [monthly data, 20 years](results/belgium/belgium_auction_20y_monthly.csv) · [volume chart](results/belgium/belgium_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/belgium/belgium_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/belgium/belgium_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/belgium/belgium_auction_20y_monthly.csv) · [volume chart](results/auctions/belgium/belgium_accepted_20y.png)
 
 </details>
 
@@ -176,21 +200,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/b
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Czech Republic: Every auction vs the daily market yield, last 12 months](results/czechia/czechia_recent_yield_12m.png)
+![Czech Republic: Every auction vs the daily market yield, last 12 months](results/auctions/czechia/czechia_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Czech Republic: Bid-to-cover at every auction, last 12 months](results/czechia/czechia_recent_bid_to_cover_12m.png)
+![Czech Republic: Bid-to-cover at every auction, last 12 months](results/auctions/czechia/czechia_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Czech Republic: Auction yields, 20 years (3-month average)](results/czechia/czechia_auction_yield_20y.png)
+![Czech Republic: Auction yields, 20 years (3-month average)](results/auctions/czechia/czechia_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Czech Republic: Bid-to-cover, 20 years (3-month average)](results/czechia/czechia_bid_to_cover_20y.png)
+![Czech Republic: Bid-to-cover, 20 years (3-month average)](results/auctions/czechia/czechia_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/czechia/czechia_recent_auctions_12m.csv) · [monthly data, 20 years](results/czechia/czechia_auction_20y_monthly.csv) · [volume chart](results/czechia/czechia_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/czechia/czechia_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/czechia/czechia_auction_20y_monthly.csv) · [volume chart](results/auctions/czechia/czechia_accepted_20y.png)
 
 </details>
 
@@ -199,21 +223,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/c
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Denmark: Every auction vs the daily market yield, last 12 months](results/denmark/denmark_recent_yield_12m.png)
+![Denmark: Every auction vs the daily market yield, last 12 months](results/auctions/denmark/denmark_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Denmark: Bid-to-cover at every auction, last 12 months](results/denmark/denmark_recent_bid_to_cover_12m.png)
+![Denmark: Bid-to-cover at every auction, last 12 months](results/auctions/denmark/denmark_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Denmark: Auction yields, 20 years (3-month average)](results/denmark/denmark_auction_yield_20y.png)
+![Denmark: Auction yields, 20 years (3-month average)](results/auctions/denmark/denmark_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Denmark: Bid-to-cover, 20 years (3-month average)](results/denmark/denmark_bid_to_cover_20y.png)
+![Denmark: Bid-to-cover, 20 years (3-month average)](results/auctions/denmark/denmark_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/denmark/denmark_recent_auctions_12m.csv) · [monthly data, 20 years](results/denmark/denmark_auction_20y_monthly.csv) · [volume chart](results/denmark/denmark_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/denmark/denmark_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/denmark/denmark_auction_20y_monthly.csv) · [volume chart](results/auctions/denmark/denmark_accepted_20y.png)
 
 </details>
 
@@ -222,21 +246,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/d
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Finland: Every auction vs the daily market yield, last 12 months](results/finland/finland_recent_yield_12m.png)
+![Finland: Every auction vs the daily market yield, last 12 months](results/auctions/finland/finland_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Finland: Bid-to-cover at every auction, last 12 months](results/finland/finland_recent_bid_to_cover_12m.png)
+![Finland: Bid-to-cover at every auction, last 12 months](results/auctions/finland/finland_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Finland: Auction yields, 20 years (3-month average)](results/finland/finland_auction_yield_20y.png)
+![Finland: Auction yields, 20 years (3-month average)](results/auctions/finland/finland_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Finland: Bid-to-cover, 20 years (3-month average)](results/finland/finland_bid_to_cover_20y.png)
+![Finland: Bid-to-cover, 20 years (3-month average)](results/auctions/finland/finland_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/finland/finland_recent_auctions_12m.csv) · [monthly data, 20 years](results/finland/finland_auction_20y_monthly.csv) · [volume chart](results/finland/finland_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/finland/finland_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/finland/finland_auction_20y_monthly.csv) · [volume chart](results/auctions/finland/finland_accepted_20y.png)
 
 </details>
 
@@ -245,21 +269,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/f
 
 **Every auction vs the daily market yield, last 12 months**
 
-![France: Every auction vs the daily market yield, last 12 months](results/france/france_recent_yield_12m.png)
+![France: Every auction vs the daily market yield, last 12 months](results/auctions/france/france_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![France: Bid-to-cover at every auction, last 12 months](results/france/france_recent_bid_to_cover_12m.png)
+![France: Bid-to-cover at every auction, last 12 months](results/auctions/france/france_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![France: Auction yields, 20 years (3-month average)](results/france/france_auction_yield_20y.png)
+![France: Auction yields, 20 years (3-month average)](results/auctions/france/france_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![France: Bid-to-cover, 20 years (3-month average)](results/france/france_bid_to_cover_20y.png)
+![France: Bid-to-cover, 20 years (3-month average)](results/auctions/france/france_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/france/france_recent_auctions_12m.csv) · [monthly data, 20 years](results/france/france_auction_20y_monthly.csv) · [volume chart](results/france/france_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/france/france_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/france/france_auction_20y_monthly.csv) · [volume chart](results/auctions/france/france_accepted_20y.png)
 
 </details>
 
@@ -268,21 +292,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/f
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Greece: Every auction vs the daily market yield, last 12 months](results/greece/greece_recent_yield_12m.png)
+![Greece: Every auction vs the daily market yield, last 12 months](results/auctions/greece/greece_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Greece: Bid-to-cover at every auction, last 12 months](results/greece/greece_recent_bid_to_cover_12m.png)
+![Greece: Bid-to-cover at every auction, last 12 months](results/auctions/greece/greece_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Greece: Auction yields, 20 years (3-month average)](results/greece/greece_auction_yield_20y.png)
+![Greece: Auction yields, 20 years (3-month average)](results/auctions/greece/greece_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Greece: Bid-to-cover, 20 years (3-month average)](results/greece/greece_bid_to_cover_20y.png)
+![Greece: Bid-to-cover, 20 years (3-month average)](results/auctions/greece/greece_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/greece/greece_recent_auctions_12m.csv) · [monthly data, 20 years](results/greece/greece_auction_20y_monthly.csv) · [volume chart](results/greece/greece_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/greece/greece_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/greece/greece_auction_20y_monthly.csv) · [volume chart](results/auctions/greece/greece_accepted_20y.png)
 
 </details>
 
@@ -291,21 +315,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/g
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Hungary: Every auction vs the daily market yield, last 12 months](results/hungary/hungary_recent_yield_12m.png)
+![Hungary: Every auction vs the daily market yield, last 12 months](results/auctions/hungary/hungary_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Hungary: Daily market yields by maturity, last 12 months](results/market_yields/hungary/hungary_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Hungary: Bid-to-cover at every auction, last 12 months](results/hungary/hungary_recent_bid_to_cover_12m.png)
+![Hungary: Bid-to-cover at every auction, last 12 months](results/auctions/hungary/hungary_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Hungary: Auction yields, 20 years (3-month average)](results/hungary/hungary_auction_yield_20y.png)
+![Hungary: Auction yields, 20 years (3-month average)](results/auctions/hungary/hungary_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Hungary: Bid-to-cover, 20 years (3-month average)](results/hungary/hungary_bid_to_cover_20y.png)
+![Hungary: Bid-to-cover, 20 years (3-month average)](results/auctions/hungary/hungary_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/hungary/hungary_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/hungary/hungary_market_yields_12m.csv) · [monthly data, 20 years](results/hungary/hungary_auction_20y_monthly.csv) · [volume chart](results/hungary/hungary_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/hungary/hungary_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/hungary/hungary_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/hungary/hungary_auction_20y_monthly.csv) · [volume chart](results/auctions/hungary/hungary_accepted_20y.png)
 
 </details>
 
@@ -314,21 +342,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/h
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Ireland: Every auction vs the daily market yield, last 12 months](results/ireland/ireland_recent_yield_12m.png)
+![Ireland: Every auction vs the daily market yield, last 12 months](results/auctions/ireland/ireland_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Ireland: Bid-to-cover at every auction, last 12 months](results/ireland/ireland_recent_bid_to_cover_12m.png)
+![Ireland: Bid-to-cover at every auction, last 12 months](results/auctions/ireland/ireland_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Ireland: Auction yields, 20 years (3-month average)](results/ireland/ireland_auction_yield_20y.png)
+![Ireland: Auction yields, 20 years (3-month average)](results/auctions/ireland/ireland_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Ireland: Bid-to-cover, 20 years (3-month average)](results/ireland/ireland_bid_to_cover_20y.png)
+![Ireland: Bid-to-cover, 20 years (3-month average)](results/auctions/ireland/ireland_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/ireland/ireland_recent_auctions_12m.csv) · [monthly data, 20 years](results/ireland/ireland_auction_20y_monthly.csv) · [volume chart](results/ireland/ireland_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/ireland/ireland_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/ireland/ireland_auction_20y_monthly.csv) · [volume chart](results/auctions/ireland/ireland_accepted_20y.png)
 
 </details>
 
@@ -337,21 +365,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/i
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Italy: Every auction vs the daily market yield, last 12 months](results/italy/italy_recent_yield_12m.png)
+![Italy: Every auction vs the daily market yield, last 12 months](results/auctions/italy/italy_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Italy: Bid-to-cover at every auction, last 12 months](results/italy/italy_recent_bid_to_cover_12m.png)
+![Italy: Bid-to-cover at every auction, last 12 months](results/auctions/italy/italy_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Italy: Auction yields, 20 years (3-month average)](results/italy/italy_auction_yield_20y.png)
+![Italy: Auction yields, 20 years (3-month average)](results/auctions/italy/italy_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Italy: Bid-to-cover, 20 years (3-month average)](results/italy/italy_bid_to_cover_20y.png)
+![Italy: Bid-to-cover, 20 years (3-month average)](results/auctions/italy/italy_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/italy/italy_recent_auctions_12m.csv) · [monthly data, 20 years](results/italy/italy_auction_20y_monthly.csv) · [volume chart](results/italy/italy_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/italy/italy_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/italy/italy_auction_20y_monthly.csv) · [volume chart](results/auctions/italy/italy_accepted_20y.png)
 
 </details>
 
@@ -360,21 +388,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/i
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Lithuania: Every auction vs the daily market yield, last 12 months](results/lithuania/lithuania_recent_yield_12m.png)
+![Lithuania: Every auction vs the daily market yield, last 12 months](results/auctions/lithuania/lithuania_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Lithuania: Bid-to-cover at every auction, last 12 months](results/lithuania/lithuania_recent_bid_to_cover_12m.png)
+![Lithuania: Bid-to-cover at every auction, last 12 months](results/auctions/lithuania/lithuania_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Lithuania: Auction yields, 20 years (3-month average)](results/lithuania/lithuania_auction_yield_20y.png)
+![Lithuania: Auction yields, 20 years (3-month average)](results/auctions/lithuania/lithuania_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Lithuania: Bid-to-cover, 20 years (3-month average)](results/lithuania/lithuania_bid_to_cover_20y.png)
+![Lithuania: Bid-to-cover, 20 years (3-month average)](results/auctions/lithuania/lithuania_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/lithuania/lithuania_recent_auctions_12m.csv) · [monthly data, 20 years](results/lithuania/lithuania_auction_20y_monthly.csv) · [volume chart](results/lithuania/lithuania_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/lithuania/lithuania_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/lithuania/lithuania_auction_20y_monthly.csv) · [volume chart](results/auctions/lithuania/lithuania_accepted_20y.png)
 
 </details>
 
@@ -383,13 +411,13 @@ More: [every auction, last 12 months (with the market yield that day)](results/l
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Netherlands: Every auction vs the daily market yield, last 12 months](results/netherlands/netherlands_recent_yield_12m.png)
+![Netherlands: Every auction vs the daily market yield, last 12 months](results/auctions/netherlands/netherlands_recent_yield_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Netherlands: Auction yields, 20 years (3-month average)](results/netherlands/netherlands_auction_yield_20y.png)
+![Netherlands: Auction yields, 20 years (3-month average)](results/auctions/netherlands/netherlands_auction_yield_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/netherlands/netherlands_recent_auctions_12m.csv) · [monthly data, 20 years](results/netherlands/netherlands_auction_20y_monthly.csv) · [volume chart](results/netherlands/netherlands_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/netherlands/netherlands_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/netherlands/netherlands_auction_20y_monthly.csv) · [volume chart](results/auctions/netherlands/netherlands_accepted_20y.png)
 
 </details>
 
@@ -398,21 +426,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/n
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Norway: Every auction vs the daily market yield, last 12 months](results/norway/norway_recent_yield_12m.png)
+![Norway: Every auction vs the daily market yield, last 12 months](results/auctions/norway/norway_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Norway: Daily market yields by maturity, last 12 months](results/market_yields/norway/norway_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Norway: Bid-to-cover at every auction, last 12 months](results/norway/norway_recent_bid_to_cover_12m.png)
+![Norway: Bid-to-cover at every auction, last 12 months](results/auctions/norway/norway_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Norway: Auction yields, 20 years (3-month average)](results/norway/norway_auction_yield_20y.png)
+![Norway: Auction yields, 20 years (3-month average)](results/auctions/norway/norway_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Norway: Bid-to-cover, 20 years (3-month average)](results/norway/norway_bid_to_cover_20y.png)
+![Norway: Bid-to-cover, 20 years (3-month average)](results/auctions/norway/norway_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/norway/norway_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/norway/norway_market_yields_12m.csv) · [monthly data, 20 years](results/norway/norway_auction_20y_monthly.csv) · [volume chart](results/norway/norway_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/norway/norway_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/norway/norway_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/norway/norway_auction_20y_monthly.csv) · [volume chart](results/auctions/norway/norway_accepted_20y.png)
 
 </details>
 
@@ -421,21 +453,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/n
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Poland: Every auction vs the daily market yield, last 12 months](results/poland/poland_recent_yield_12m.png)
+![Poland: Every auction vs the daily market yield, last 12 months](results/auctions/poland/poland_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Poland: Bid-to-cover at every auction, last 12 months](results/poland/poland_recent_bid_to_cover_12m.png)
+![Poland: Bid-to-cover at every auction, last 12 months](results/auctions/poland/poland_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Poland: Auction yields, 20 years (3-month average)](results/poland/poland_auction_yield_20y.png)
+![Poland: Auction yields, 20 years (3-month average)](results/auctions/poland/poland_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Poland: Bid-to-cover, 20 years (3-month average)](results/poland/poland_bid_to_cover_20y.png)
+![Poland: Bid-to-cover, 20 years (3-month average)](results/auctions/poland/poland_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/poland/poland_recent_auctions_12m.csv) · [monthly data, 20 years](results/poland/poland_auction_20y_monthly.csv) · [volume chart](results/poland/poland_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/poland/poland_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/poland/poland_auction_20y_monthly.csv) · [volume chart](results/auctions/poland/poland_accepted_20y.png)
 
 </details>
 
@@ -444,21 +476,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/p
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Slovakia: Every auction vs the daily market yield, last 12 months](results/slovakia/slovakia_recent_yield_12m.png)
+![Slovakia: Every auction vs the daily market yield, last 12 months](results/auctions/slovakia/slovakia_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Slovakia: Bid-to-cover at every auction, last 12 months](results/slovakia/slovakia_recent_bid_to_cover_12m.png)
+![Slovakia: Bid-to-cover at every auction, last 12 months](results/auctions/slovakia/slovakia_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Slovakia: Auction yields, 20 years (3-month average)](results/slovakia/slovakia_auction_yield_20y.png)
+![Slovakia: Auction yields, 20 years (3-month average)](results/auctions/slovakia/slovakia_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Slovakia: Bid-to-cover, 20 years (3-month average)](results/slovakia/slovakia_bid_to_cover_20y.png)
+![Slovakia: Bid-to-cover, 20 years (3-month average)](results/auctions/slovakia/slovakia_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/slovakia/slovakia_recent_auctions_12m.csv) · [monthly data, 20 years](results/slovakia/slovakia_auction_20y_monthly.csv) · [volume chart](results/slovakia/slovakia_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/slovakia/slovakia_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/slovakia/slovakia_auction_20y_monthly.csv) · [volume chart](results/auctions/slovakia/slovakia_accepted_20y.png)
 
 </details>
 
@@ -467,13 +499,13 @@ More: [every auction, last 12 months (with the market yield that day)](results/s
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Slovenia: Every auction vs the daily market yield, last 12 months](results/slovenia/slovenia_recent_yield_12m.png)
+![Slovenia: Every auction vs the daily market yield, last 12 months](results/auctions/slovenia/slovenia_recent_yield_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Slovenia: Auction yields, 20 years (3-month average)](results/slovenia/slovenia_auction_yield_20y.png)
+![Slovenia: Auction yields, 20 years (3-month average)](results/auctions/slovenia/slovenia_auction_yield_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/slovenia/slovenia_recent_auctions_12m.csv) · [monthly data, 20 years](results/slovenia/slovenia_auction_20y_monthly.csv) · [volume chart](results/slovenia/slovenia_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/slovenia/slovenia_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/slovenia/slovenia_auction_20y_monthly.csv) · [volume chart](results/auctions/slovenia/slovenia_accepted_20y.png)
 
 </details>
 
@@ -482,21 +514,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/s
 
 **Every auction vs the daily market yield, last 12 months**
 
-![South Korea: Every auction vs the daily market yield, last 12 months](results/korea/korea_recent_yield_12m.png)
+![South Korea: Every auction vs the daily market yield, last 12 months](results/auctions/korea/korea_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![South Korea: Bid-to-cover at every auction, last 12 months](results/korea/korea_recent_bid_to_cover_12m.png)
+![South Korea: Bid-to-cover at every auction, last 12 months](results/auctions/korea/korea_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![South Korea: Auction yields, 20 years (3-month average)](results/korea/korea_auction_yield_20y.png)
+![South Korea: Auction yields, 20 years (3-month average)](results/auctions/korea/korea_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![South Korea: Bid-to-cover, 20 years (3-month average)](results/korea/korea_bid_to_cover_20y.png)
+![South Korea: Bid-to-cover, 20 years (3-month average)](results/auctions/korea/korea_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/korea/korea_recent_auctions_12m.csv) · [monthly data, 20 years](results/korea/korea_auction_20y_monthly.csv) · [volume chart](results/korea/korea_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/korea/korea_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/korea/korea_auction_20y_monthly.csv) · [volume chart](results/auctions/korea/korea_accepted_20y.png)
 
 </details>
 
@@ -505,21 +537,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/k
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Spain: Every auction vs the daily market yield, last 12 months](results/spain/spain_recent_yield_12m.png)
+![Spain: Every auction vs the daily market yield, last 12 months](results/auctions/spain/spain_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Spain: Daily market yields by maturity, last 12 months](results/market_yields/spain/spain_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Spain: Bid-to-cover at every auction, last 12 months](results/spain/spain_recent_bid_to_cover_12m.png)
+![Spain: Bid-to-cover at every auction, last 12 months](results/auctions/spain/spain_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Spain: Auction yields, 20 years (3-month average)](results/spain/spain_auction_yield_20y.png)
+![Spain: Auction yields, 20 years (3-month average)](results/auctions/spain/spain_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Spain: Bid-to-cover, 20 years (3-month average)](results/spain/spain_bid_to_cover_20y.png)
+![Spain: Bid-to-cover, 20 years (3-month average)](results/auctions/spain/spain_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/spain/spain_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/spain/spain_market_yields_12m.csv) · [monthly data, 20 years](results/spain/spain_auction_20y_monthly.csv) · [volume chart](results/spain/spain_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/spain/spain_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/spain/spain_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/spain/spain_auction_20y_monthly.csv) · [volume chart](results/auctions/spain/spain_accepted_20y.png)
 
 </details>
 
@@ -528,21 +564,25 @@ More: [every auction, last 12 months (with the market yield that day)](results/s
 
 **Every auction vs the daily market yield, last 12 months**
 
-![Switzerland: Every auction vs the daily market yield, last 12 months](results/switzerland/switzerland_recent_yield_12m.png)
+![Switzerland: Every auction vs the daily market yield, last 12 months](results/auctions/switzerland/switzerland_recent_yield_12m.png)
+
+**Daily market yields by maturity, last 12 months**
+
+![Switzerland: Daily market yields by maturity, last 12 months](results/market_yields/switzerland/switzerland_market_yields_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![Switzerland: Bid-to-cover at every auction, last 12 months](results/switzerland/switzerland_recent_bid_to_cover_12m.png)
+![Switzerland: Bid-to-cover at every auction, last 12 months](results/auctions/switzerland/switzerland_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![Switzerland: Auction yields, 20 years (3-month average)](results/switzerland/switzerland_auction_yield_20y.png)
+![Switzerland: Auction yields, 20 years (3-month average)](results/auctions/switzerland/switzerland_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![Switzerland: Bid-to-cover, 20 years (3-month average)](results/switzerland/switzerland_bid_to_cover_20y.png)
+![Switzerland: Bid-to-cover, 20 years (3-month average)](results/auctions/switzerland/switzerland_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/switzerland/switzerland_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/switzerland/switzerland_market_yields_12m.csv) · [monthly data, 20 years](results/switzerland/switzerland_auction_20y_monthly.csv) · [volume chart](results/switzerland/switzerland_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/switzerland/switzerland_recent_auctions_12m.csv) · [daily market yields, last 12 months](results/market_yields/switzerland/switzerland_market_yields_12m.csv) · [monthly data, 20 years](results/auctions/switzerland/switzerland_auction_20y_monthly.csv) · [volume chart](results/auctions/switzerland/switzerland_accepted_20y.png)
 
 </details>
 
@@ -551,21 +591,21 @@ More: [every auction, last 12 months (with the market yield that day)](results/s
 
 **Every auction vs the daily market yield, last 12 months**
 
-![European Union: Every auction vs the daily market yield, last 12 months](results/eu/eu_recent_yield_12m.png)
+![European Union: Every auction vs the daily market yield, last 12 months](results/auctions/eu/eu_recent_yield_12m.png)
 
 **Bid-to-cover at every auction, last 12 months**
 
-![European Union: Bid-to-cover at every auction, last 12 months](results/eu/eu_recent_bid_to_cover_12m.png)
+![European Union: Bid-to-cover at every auction, last 12 months](results/auctions/eu/eu_recent_bid_to_cover_12m.png)
 
 **Auction yields, 20 years (3-month average)**
 
-![European Union: Auction yields, 20 years (3-month average)](results/eu/eu_auction_yield_20y.png)
+![European Union: Auction yields, 20 years (3-month average)](results/auctions/eu/eu_auction_yield_20y.png)
 
 **Bid-to-cover, 20 years (3-month average)**
 
-![European Union: Bid-to-cover, 20 years (3-month average)](results/eu/eu_bid_to_cover_20y.png)
+![European Union: Bid-to-cover, 20 years (3-month average)](results/auctions/eu/eu_bid_to_cover_20y.png)
 
-More: [every auction, last 12 months (with the market yield that day)](results/eu/eu_recent_auctions_12m.csv) · [monthly data, 20 years](results/eu/eu_auction_20y_monthly.csv) · [volume chart](results/eu/eu_accepted_20y.png)
+More: [every auction, last 12 months (with the market yield that day)](results/auctions/eu/eu_recent_auctions_12m.csv) · [monthly data, 20 years](results/auctions/eu/eu_auction_20y_monthly.csv) · [volume chart](results/auctions/eu/eu_accepted_20y.png)
 
 </details>
 
@@ -580,13 +620,17 @@ pip install -r requirements.txt
 python treasurydata.py
 ```
 
-Each run creates a dated folder:
+Each run creates a dated folder, with auction results and market yields kept
+apart (they come from different sources):
 
 ```
 runs/2026-10-22_213542_20y/
-  auction_totals.csv          auctions per country and maturity bucket
-  us/  canada/  france/ ...   one folder per country: charts + CSVs
-  global/                     every country together
+  auctions/
+    auction_totals.csv          auctions per country and maturity bucket
+    us/  canada/  france/ ...   one folder per country: charts + CSVs
+    global/                     every country together
+  market_yields/
+    us/  canada/  uk/ ...       daily market yields: chart + CSV (10 countries)
 ```
 
 Change the lookback windows with `YEARS` (20-year charts) and `RECENT_MONTHS`
@@ -763,7 +807,7 @@ countries/
   <country>.py       one loader per country (eu.py for the European Union)
 cache/               downloaded auction pages and lookups for the EU, South Korea,
                      Slovakia and Lithuania (gitignored); rebuilt automatically
-results/             copy of the latest run: every country's charts and CSVs
+results/             copy of the latest run (auctions/ and market_yields/)
 docs/images/         example charts shown in this README
 ```
 

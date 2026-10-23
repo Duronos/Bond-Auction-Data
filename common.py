@@ -614,6 +614,36 @@ def recent_plots(country: Country, recent: pd.DataFrame, market: pd.DataFrame | 
     return plots
 
 
+# Maturities drawn on the market-only chart, where the source has them (in
+# months: 3-month to 30-year). At most seven, so each gets its own colour.
+MARKET_CHART_TENORS = [3, 12, 24, 60, 120, 240, 360]
+
+
+def market_plot(country: Country, market: pd.DataFrame, start, end, months: int) -> dict:
+    """Daily market yields on their own: one line per maturity, one panel."""
+    tenors = [t for t in MARKET_CHART_TENORS if t in set(market["tenor_months"])]
+    if not tenors:
+        return {}
+    labels = [tenor_label(t) for t in tenors]
+    data = market[market["tenor_months"].isin(tenors) & (market["date"] >= start)]
+    data = data.assign(maturity=pd.Categorical(data["tenor_months"].map(tenor_label),
+                                               categories=labels, ordered=True))
+    plot = (
+        ggplot(data, aes(x="date", y="market_yield", color="maturity"))
+        + geom_line(size=0.8)
+        + scale_color_manual(values=dict(zip(labels, SERIES_COLORS)), name="Maturity")
+        + scale_x_datetime(date_breaks="1 month", date_labels="%b %Y", limits=(start, end))
+        + labs(
+            title=f"{country.name}: daily government bond market yields, last {months} months",
+            subtitle="Yield on existing bonds as they trade each day, by maturity",
+            x="Date", y="Market yield (%)",
+            caption=wrap(f"Source: {country.market_source}."),
+        )
+        + copy.deepcopy(BASE_THEME)
+    )
+    return {"market_yields": (plot, None)}
+
+
 def global_recent_plot(recents: list[tuple[str, pd.DataFrame, pd.DataFrame | None]],
                        country_order: list[str], start, end, months: int,
                        tenor_months: int = 120) -> dict:
