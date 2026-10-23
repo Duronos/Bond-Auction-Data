@@ -46,6 +46,34 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     return pd.concat([bonds, bills], ignore_index=True)
 
 
+MARKET_URL = "https://www.bankofcanada.ca/valet/observations/{series}/json?start_date={start}"
+
+# Daily T-bill yields and benchmark bond yields, by maturity in months. The
+# "long" benchmark is the 30-year bond.
+MARKET_SERIES = {
+    "V80691303": 3, "V80691304": 6, "V80691305": 12,
+    "BD.CDN.2YR.DQ.YLD": 24, "BD.CDN.3YR.DQ.YLD": 36, "BD.CDN.5YR.DQ.YLD": 60,
+    "BD.CDN.7YR.DQ.YLD": 84, "BD.CDN.10YR.DQ.YLD": 120, "BD.CDN.LONG.DQ.YLD": 360,
+}
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    url = MARKET_URL.format(series=",".join(MARKET_SERIES), start=start.date())
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    rows = [
+        {"date": obs["d"], "tenor_months": months, "market_yield": obs[series]["v"]}
+        for obs in response.json()["observations"]
+        for series, months in MARKET_SERIES.items()
+        if series in obs
+    ]
+    df = pd.DataFrame(rows)
+    df["date"] = pd.to_datetime(df["date"])
+    df["tenor_months"] = df["tenor_months"].astype(float)
+    df["market_yield"] = pd.to_numeric(df["market_yield"], errors="coerce")
+    return df.dropna()
+
+
 COUNTRY = Country(
     code="canada",
     name="Canada",
@@ -55,4 +83,6 @@ COUNTRY = Country(
     source="Bank of Canada Valet API",
     yield_note="High (clearing) yield.",
     central_bank="Bank of Canada",
+    fetch_market=fetch_market,
+    market_source="Bank of Canada T-bill and benchmark bond yields",
 )

@@ -127,6 +127,28 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     return df
 
 
+# National Bank of Belgium daily OLO yields (dataset IROLOBE2), via its
+# SDMX API. Type "F" is the reference rate for a fixed residual term
+# (1 to 30 years), read off the day's OLO yield curve.
+MARKET_URL = (
+    "https://nsidisseminate-stat.nbb.be/rest/data/BE2,DF_IROLOBE2,1.0/all"
+    "?startPeriod={start}&format=csvfile"
+)
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    df = pd.read_csv(io.StringIO(get(MARKET_URL.format(start=start.date()), timeout=180).text))
+    df = df[(df["FREQ"] == "D") & (df["IROLOBE2_TYPE"] == "F")]
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(df["TIME_PERIOD"]),
+            # Maturity codes look like "10Y".
+            "tenor_months": pd.to_numeric(df["IROLOBE2_MATUR"].str.rstrip("Y"), errors="coerce") * 12,
+            "market_yield": pd.to_numeric(df["OBS_VALUE"], errors="coerce"),
+        }
+    ).dropna()
+
+
 COUNTRY = Country(
     code="belgium",
     name="Belgium",
@@ -135,4 +157,6 @@ COUNTRY = Country(
     volume_divisor=1e9,
     source="Belgian Debt Agency (parsed from its PDF results)",
     yield_note="Weighted average yield. Parsed from PDFs, so treat odd single points with caution.",
+    fetch_market=fetch_market,
+    market_source="National Bank of Belgium OLO reference rates (fixed residual term)",
 )

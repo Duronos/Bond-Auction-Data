@@ -16,12 +16,14 @@ standard columns:
 Loaders may add extra columns (e.g. the US bidder-class breakdown).
 """
 
+import copy
 import math
 import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -29,6 +31,7 @@ from plotnine import (
     ggplot,
     aes,
     geom_line,
+    geom_point,
     labs,
     theme_minimal,
     theme,
@@ -76,6 +79,11 @@ class Country:
     # Functions taking the monthly table and returning extra
     # {chart_name: (plot, formula)} entries, e.g. the US non-dealer chart.
     extra_plots: list = field(default_factory=list)
+    # Optional daily secondary-market yields for the recent charts: takes
+    # (start, end) and returns one row per date and maturity with columns
+    # date, tenor_months, market_yield (%).
+    fetch_market: Callable[[pd.Timestamp, pd.Timestamp], pd.DataFrame] | None = None
+    market_source: str | None = None  # caption: who publishes it and what kind of yield
 
 
 def prepare(df: pd.DataFrame, start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
@@ -470,6 +478,177 @@ def global_plots(combined: pd.DataFrame) -> dict:
     return plots
 
 
+# --------------------------------------------------------------------------
+# Recent charts: every auction and every trading day, no averaging
+# --------------------------------------------------------------------------
+
+# Standard maturities for the recent charts, in months (1 month to 40 years).
+# Each auction goes in the panel of the nearest one, if its time to maturity
+# is within 25% of it (a reopened 10-year with 9 years 10 months left counts
+# as a 10-year). Only panels with auctions are drawn. Neighbours are at most
+# 1.5x apart, so from 1 month up nearly every auction gets a panel.
+RECENT_TENORS = [1, 2, 3, 4, 6, 9, 12, 18, 24, 36, 48, 60, 84, 120, 180, 240, 300, 360, 480]
+TENOR_TOLERANCE = 1.25  # max ratio between an auction's maturity and its panel's
+
+RECENT_COLORS = {"Daily market yield": SERIES_COLORS[0], "Auction": SERIES_COLORS[1]}
+
+
+def tenor_label(months: float) -> str:
+    return f"{months:g}-month" if months < 12 else f"{months / 12:g}-year"
+
+
+def assign_tenor(years_to_maturity: pd.Series) -> pd.Series:
+    """Nearest standard maturity in months, or NaN if none is close enough."""
+    months = years_to_maturity.to_numpy(dtype=float)[:, None] * 12
+    tenors = np.array(RECENT_TENORS, dtype=float)
+    # Compare on a log scale so "within 25%" means the same at 3 months and 30 years.
+    distance = np.abs(np.log(months / tenors))
+    nearest = distance.argmin(axis=1)
+    close = distance[np.arange(len(months)), nearest] <= np.log(TENOR_TOLERANCE)
+    return pd.Series(np.where(close, tenors[nearest], np.nan), index=years_to_maturity.index)
+
+
+def recent_auctions(auctions: pd.DataFrame, market: pd.DataFrame | None,
+                    start: pd.Timestamp) -> pd.DataFrame:
+    """
+    One row per auction since `start`, with the market yield for the same
+    maturity on the auction day (or the last trading day before it).
+    """
+    recent = auctions[auctions["auction_date"] >= start].copy()
+    recent["tenor_months"] = assign_tenor(recent["years_to_maturity"])
+    recent = recent.dropna(subset=["tenor_months"]).sort_values("auction_date")
+
+    if market is not None and not market.empty:
+        market = market.rename(columns={"date": "auction_date"}).astype(
+            {"auction_date": recent["auction_date"].dtype, "tenor_months": float}
+        ).sort_values("auction_date")
+        # Up to 5 days back covers weekends and holidays, but not a source
+        # that has stopped updating.
+        recent = pd.merge_asof(
+            recent, market, on="auction_date", by="tenor_months",
+            direction="backward", tolerance=pd.Timedelta(days=5),
+        )
+    else:
+        recent["market_yield"] = np.nan
+    recent["auction_minus_market_bp"] = (recent["auction_yield"] - recent["market_yield"]) * 100
+
+    recent["tenor"] = recent["tenor_months"].map(tenor_label)
+    return recent[[
+        "auction_date", "maturity_date", "years_to_maturity", "tenor", "tenor_months",
+        "auction_yield", "market_yield", "auction_minus_market_bp", "bid_to_cover", "accepted",
+    ]]
+
+
+def recent_chart(points: pd.DataFrame, lines: pd.DataFrame, facet: str, y: str, ylab: str,
+                 title: str, subtitle: str, caption: str, start, end):
+    """
+    Auctions as dots and (optionally) daily market yields as lines, one
+    panel per `facet` value. Each panel gets its own y-axis so moves of a
+    few basis points stay visible.
+    """
+    points = points.dropna(subset=[y]).assign(series="Auction")
+    lines = lines.dropna(subset=["market_yield"]).assign(series="Daily market yield")
+    n_rows = -(-points[facet].nunique() // 4)
+
+    plot = ggplot()
+    if not lines.empty:
+        plot += geom_line(lines, aes(x="date", y="market_yield", color="series"), size=0.7)
+    plot += geom_point(points, aes(x="auction_date", y=y, color="series"), size=2.2)
+    plot += scale_color_manual(values=RECENT_COLORS)
+    plot += scale_x_datetime(date_breaks="2 months", date_labels="%b %Y", limits=(start, end))
+    plot += labs(title=title, subtitle=subtitle, x="Date", y=ylab, color="",
+                 caption=wrap(caption, 170))
+    # A copy: plotnine adds the figure_size below into the theme object
+    # itself, which would resize every chart drawn after this one.
+    plot += copy.deepcopy(BASE_THEME)
+    plot += facet_wrap(facet, ncol=4, scales="free_y")
+    plot += theme(figure_size=(14, 2.8 * n_rows + 2.2))
+    return plot
+
+
+def recent_plots(country: Country, recent: pd.DataFrame, market: pd.DataFrame | None,
+                 start, end, months: int) -> dict:
+    """Per-auction yield (with daily market yields) and bid-to-cover, last `months` months."""
+    if recent.empty:
+        return {}
+    tenors = sorted(recent["tenor_months"].unique())
+    panels = pd.CategoricalDtype([tenor_label(t) for t in tenors], ordered=True)
+    points = recent.assign(panel=recent["tenor"].astype(panels))
+
+    lines = pd.DataFrame(columns=["date", "market_yield", "panel"])
+    if market is not None and not market.empty:
+        lines = market[market["tenor_months"].isin(tenors) & (market["date"] >= start)]
+        lines = lines.assign(panel=lines["tenor_months"].map(tenor_label).astype(panels))
+
+    market_note = (
+        f" Line: daily market yield ({country.market_source})." if country.market_source
+        else " No free daily market yield source found for this country, so auctions only."
+    )
+    plots = {}
+    if points["auction_yield"].notna().any():
+        plots["recent_yield"] = (
+            recent_chart(
+                points, lines, "panel", "auction_yield", "Yield (%)",
+                f"{country.name}: every auction vs the daily market yield, last {months} months",
+                "Each dot is one auction; panels group auctions by maturity (within 25%)",
+                f"Auctions: {country.source}. {country.yield_note}{market_note}",
+                start, end,
+            ),
+            None,
+        )
+    if points["bid_to_cover"].notna().any():
+        plots["recent_bid_to_cover"] = (
+            recent_chart(
+                points, lines.iloc[0:0], "panel", "bid_to_cover", "Bid-to-cover ratio",
+                f"{country.name}: bid-to-cover at every auction, last {months} months",
+                "Each dot is one auction; panels group auctions by maturity (within 25%)",
+                f"Source: {country.source}. Higher bid-to-cover = more bid per unit sold.",
+                start, end,
+            ),
+            BID_TO_COVER_FORMULA,
+        )
+    return plots
+
+
+def global_recent_plot(recents: list[tuple[str, pd.DataFrame, pd.DataFrame | None]],
+                       country_order: list[str], start, end, months: int,
+                       tenor_months: int = 120) -> dict:
+    """One panel per country: its 10-year auctions and daily 10-year market yield."""
+    countries = pd.CategoricalDtype(country_order, ordered=True)
+    points, lines = [], []
+    for name, recent, market in recents:
+        points.append(recent[recent["tenor_months"] == tenor_months].assign(country=name))
+        if market is not None and not market.empty:
+            lines.append(market[(market["tenor_months"] == tenor_months)
+                                & (market["date"] >= start)].assign(country=name))
+    points = pd.concat(points, ignore_index=True).dropna(subset=["auction_yield"])
+    lines = pd.concat(lines, ignore_index=True) if lines else pd.DataFrame(
+        columns=["date", "market_yield", "country"])
+    # A panel needs at least one auction; then keep only those countries' lines.
+    lines = lines[lines["country"].isin(points["country"])]
+    if points.empty:
+        return {}
+    points["country"] = points["country"].astype(countries).cat.remove_unused_categories()
+    lines["country"] = lines["country"].astype(points["country"].dtype)
+
+    label = tenor_label(tenor_months)
+    return {
+        f"{label.replace('-', '')}_recent_yield": (
+            recent_chart(
+                points, lines, "country", "auction_yield", "Yield (%)",
+                f"{label.capitalize()} government bond yields: daily market vs every auction, "
+                f"last {months} months",
+                f"Each dot is one auction of a roughly {label} bond; each panel has its own scale",
+                "Countries without a line have no free daily market yield source. Market yields "
+                "are each central bank's or debt office's published series (par, benchmark or "
+                "zero-coupon), so small gaps between line and dots are partly definitional.",
+                start, end,
+            ),
+            None,
+        )
+    }
+
+
 def save_plot(plot, path: Path, formula: str | None = None):
     """
     Render a plot, bold every year label ending in 0 or 5, optionally
@@ -485,8 +664,10 @@ def save_plot(plot, path: Path, formula: str | None = None):
     # One Axes per panel (three on the faceted global charts). Skip axes
     # where every label would be bold (the 5-yearly grid ticks), since then
     # bold no longer marks anything out.
+    # Only plain year labels ("2025") count; month labels ("Oct 2025") on
+    # the recent charts are left alone.
     for ax in fig.axes:
-        labels = [l for l in ax.get_xticklabels() if l.get_text()]
+        labels = [l for l in ax.get_xticklabels() if l.get_text().isdigit()]
         marked = [l for l in labels if l.get_text()[-1:] in ("0", "5")]
         if len(marked) < len(labels):
             for label in marked:

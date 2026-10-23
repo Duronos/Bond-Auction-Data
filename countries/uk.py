@@ -64,6 +64,32 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     )
 
 
+MARKET_URL = (
+    "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp"
+    "?csv.x=yes&Datefrom={start:%d/%b/%Y}&Dateto=now&SeriesCodes={codes}"
+    "&CSVF=TN&UsingCodes=Y&VPD=Y&VFD=N"
+)
+
+# Bank of England nominal par yields: 5, 10 and 20 years (in months).
+MARKET_SERIES = {"IUDSNPY": 60, "IUDMNPY": 120, "IUDLNPY": 240}
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    url = MARKET_URL.format(start=start, codes=",".join(MARKET_SERIES))
+    response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=120)
+    response.raise_for_status()
+    df = pd.read_csv(io.StringIO(response.text)).melt(
+        id_vars="DATE", var_name="series", value_name="market_yield"
+    )
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(df["DATE"], format="%d %b %Y"),
+            "tenor_months": df["series"].map(MARKET_SERIES).astype(float),
+            "market_yield": pd.to_numeric(df["market_yield"], errors="coerce"),
+        }
+    ).dropna()
+
+
 COUNTRY = Country(
     code="uk",
     name="United Kingdom",
@@ -72,4 +98,6 @@ COUNTRY = Country(
     volume_divisor=1e9,
     source="UK Debt Management Office",
     yield_note="Yield at the average accepted price; gilts only (no T-bills).",
+    fetch_market=fetch_market,
+    market_source="Bank of England nominal par yields (5, 10 and 20 years only)",
 )

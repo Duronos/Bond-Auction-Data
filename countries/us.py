@@ -1,5 +1,7 @@
 """United States: U.S. Treasury Fiscal Data API (auctions_query)."""
 
+import io
+
 import pandas as pd
 import requests
 
@@ -91,6 +93,35 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     return out
 
 
+MARKET_URL = (
+    "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/"
+    "daily-treasury-rates.csv/{year}/all?type=daily_treasury_yield_curve"
+    "&field_tdr_date_value={year}&page&_format=csv"
+)
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    """Daily Treasury par yield curve rates, one CSV per calendar year."""
+    frames = []
+    for year in range(start.year, end.year + 1):
+        response = requests.get(MARKET_URL.format(year=year), timeout=120)
+        response.raise_for_status()
+        frames.append(
+            pd.read_csv(io.StringIO(response.text))
+            .melt(id_vars="Date", var_name="label", value_name="market_yield")
+        )
+    df = pd.concat(frames, ignore_index=True)
+    # Column labels look like "3 Mo", "1.5 Month" or "10 Yr".
+    parts = df["label"].str.extract(r"([\d.]+)\s*(Mo|Month|Yr)")
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(df["Date"], format="%m/%d/%Y"),
+            "tenor_months": pd.to_numeric(parts[0]) * parts[1].map({"Mo": 1, "Month": 1, "Yr": 12}),
+            "market_yield": pd.to_numeric(df["market_yield"], errors="coerce"),
+        }
+    ).dropna()
+
+
 def nondealer_plot(monthly: pd.DataFrame) -> dict:
     return {
         "nondealer_share": (
@@ -117,4 +148,6 @@ COUNTRY = Country(
     yield_note="Bills use the bond-equivalent investment rate; notes and bonds use the high yield.",
     central_bank="Federal Reserve (SOMA)",
     extra_plots=[nondealer_plot],
+    fetch_market=fetch_market,
+    market_source="U.S. Treasury daily par yield curve rates",
 )

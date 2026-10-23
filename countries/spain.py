@@ -65,6 +65,38 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     return df
 
 
+# Banco de España daily financial indicators (table 1.2): secondary-market
+# yields on 12-month Letras and 3- to 30-year Bonos/Obligaciones.
+MARKET_URL = "https://www.bde.es/webbe/es/estadisticas/compartido/datos/csv/si_1_2.csv"
+MARKET_SERIES = {
+    "DPUDTES00U7": 12, "DPUG0B1F0ZN": 36, "DPUG0B1F0ZO": 60,
+    "DPUG0B1F0ZP": 120, "DPUG0B1F0ZQ": 180, "DPUG0B1F0ZR": 360,
+}
+SPANISH_MONTHS = {
+    "ENE": "01", "FEB": "02", "MAR": "03", "ABR": "04", "MAY": "05", "JUN": "06",
+    "JUL": "07", "AGO": "08", "SEP": "09", "OCT": "10", "NOV": "11", "DIC": "12",
+}
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    # Six header rows (series code, description, units, ...), then one row
+    # per day: "15 OCT 2026", values, with "_" for missing.
+    sheet = pd.read_csv(io.StringIO(get(MARKET_URL).content.decode("latin-1")),
+                        header=None, dtype=str)
+    sheet.columns = sheet.iloc[0]
+    sheet = sheet[sheet.iloc[:, 0].str.match(r"^\d", na=False)]
+    df = sheet.melt(id_vars=sheet.columns[0], value_vars=list(MARKET_SERIES),
+                    var_name="series", value_name="market_yield")
+    dates = df.iloc[:, 0].replace(SPANISH_MONTHS, regex=True)  # "15 OCT 2026" -> "15 10 2026"
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(dates, format="%d %m %Y"),
+            "tenor_months": df["series"].map(MARKET_SERIES).astype(float),
+            "market_yield": pd.to_numeric(df["market_yield"], errors="coerce"),
+        }
+    ).dropna()
+
+
 COUNTRY = Country(
     code="spain",
     name="Spain",
@@ -73,4 +105,6 @@ COUNTRY = Country(
     volume_divisor=1e9,
     source="Tesoro Público (Spanish Treasury)",
     yield_note="Stop-out/marginal (clearing) yield. Only the last two years are published in bulk.",
+    fetch_market=fetch_market,
+    market_source="Banco de España secondary-market yields on Letras and Bonos",
 )

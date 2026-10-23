@@ -78,6 +78,25 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     return df
 
 
+# SNB daily spot (zero-coupon) rates for Confederation bonds, 1 to 30 years.
+# The SNB updates this cube once a month, so the latest weeks are missing.
+MARKET_URL = "https://data.snb.ch/api/cube/rendeiduebd/data/csv/en?fromDate={start}"
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    df = pd.read_csv(io.StringIO(get(MARKET_URL.format(start=start.date())).text),
+                     sep=";", skiprows=3)
+    # D0 = issuer ("CHF" is the Confederation), D1 = maturity ("10J" = 10 years).
+    df = df[df["D0"] == "CHF"]
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(df["Date"]),
+            "tenor_months": pd.to_numeric(df["D1"].str.rstrip("J"), errors="coerce") * 12,
+            "market_yield": pd.to_numeric(df["Value"], errors="coerce"),
+        }
+    ).dropna()
+
+
 COUNTRY = Country(
     code="switzerland",
     name="Switzerland",
@@ -86,4 +105,6 @@ COUNTRY = Country(
     volume_divisor=1e9,
     source="Swiss Federal Finance Administration / SNB",
     yield_note="Yield at the issue price. Bonds from 2011, money market claims (bills) from 2012.",
+    fetch_market=fetch_market,
+    market_source="SNB spot rates on Confederation bonds; updated monthly, so the last few weeks are missing",
 )

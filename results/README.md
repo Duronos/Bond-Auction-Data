@@ -1,36 +1,41 @@
 # Results: run of 22 October 2026
 
-A copy of the latest run (`runs/2026-10-22_173133_20y/`): one folder per
-country with its charts and monthly CSV, plus [`global/`](global/) (every
-country together) and [`auction_totals.csv`](auction_totals.csv) (auctions per
-country and maturity bucket).
+A copy of the latest run (`runs/2026-10-22_211145_20y/`): one folder per country with its
+charts and data, plus [`global/`](global/) (every country together) and
+[`auction_totals.csv`](auction_totals.csv) (auctions per country and maturity
+bucket).
 
-A dash means the country doesn't publish that measure.
+- **Last 12 months**: every auction as it happened, plus the daily market
+  yield where the country publishes one. Nothing is averaged.
+- **20 years**: monthly medians smoothed with a 3-month average, by maturity bucket.
 
-| Country | Bid-to-cover | Auction yield | Volume | Central bank share | Monthly data |
-|---|:-:|:-:|:-:|:-:|:-:|
-| [United States](us/) | [chart](us/us_bid_to_cover_20y.png) | [chart](us/us_auction_yield_20y.png) | [chart](us/us_accepted_20y.png) | [chart](us/us_central_bank_share_20y.png) | [CSV](us/us_auction_20y_monthly.csv) |
-| [Canada](canada/) | [chart](canada/canada_bid_to_cover_20y.png) | [chart](canada/canada_auction_yield_20y.png) | [chart](canada/canada_accepted_20y.png) | [chart](canada/canada_central_bank_share_20y.png) | [CSV](canada/canada_auction_20y_monthly.csv) |
-| [United Kingdom](uk/) | [chart](uk/uk_bid_to_cover_20y.png) | [chart](uk/uk_auction_yield_20y.png) | [chart](uk/uk_accepted_20y.png) | – | [CSV](uk/uk_auction_20y_monthly.csv) |
-| [Germany](germany/) | [chart](germany/germany_bid_to_cover_20y.png) | [chart](germany/germany_auction_yield_20y.png) | [chart](germany/germany_accepted_20y.png) | – | [CSV](germany/germany_auction_20y_monthly.csv) |
-| [Japan](japan/) | [chart](japan/japan_bid_to_cover_20y.png) | [chart](japan/japan_auction_yield_20y.png) | [chart](japan/japan_accepted_20y.png) | – | [CSV](japan/japan_auction_20y_monthly.csv) |
-| [Austria](austria/) | – | [chart](austria/austria_auction_yield_20y.png) | [chart](austria/austria_accepted_20y.png) | – | [CSV](austria/austria_auction_20y_monthly.csv) |
-| [Belgium](belgium/) | [chart](belgium/belgium_bid_to_cover_20y.png) | [chart](belgium/belgium_auction_yield_20y.png) | [chart](belgium/belgium_accepted_20y.png) | – | [CSV](belgium/belgium_auction_20y_monthly.csv) |
-| [Czech Republic](czechia/) | [chart](czechia/czechia_bid_to_cover_20y.png) | [chart](czechia/czechia_auction_yield_20y.png) | [chart](czechia/czechia_accepted_20y.png) | – | [CSV](czechia/czechia_auction_20y_monthly.csv) |
-| [Denmark](denmark/) | [chart](denmark/denmark_bid_to_cover_20y.png) | [chart](denmark/denmark_auction_yield_20y.png) | [chart](denmark/denmark_accepted_20y.png) | – | [CSV](denmark/denmark_auction_20y_monthly.csv) |
-| [Finland](finland/) | [chart](finland/finland_bid_to_cover_20y.png) | [chart](finland/finland_auction_yield_20y.png) | [chart](finland/finland_accepted_20y.png) | – | [CSV](finland/finland_auction_20y_monthly.csv) |
-| [France](france/) | [chart](france/france_bid_to_cover_20y.png) | [chart](france/france_auction_yield_20y.png) | [chart](france/france_accepted_20y.png) | – | [CSV](france/france_auction_20y_monthly.csv) |
-| [Greece](greece/) | [chart](greece/greece_bid_to_cover_20y.png) | [chart](greece/greece_auction_yield_20y.png) | [chart](greece/greece_accepted_20y.png) | – | [CSV](greece/greece_auction_20y_monthly.csv) |
-| [Hungary](hungary/) | [chart](hungary/hungary_bid_to_cover_20y.png) | [chart](hungary/hungary_auction_yield_20y.png) | [chart](hungary/hungary_accepted_20y.png) | – | [CSV](hungary/hungary_auction_20y_monthly.csv) |
-| [Ireland](ireland/) | [chart](ireland/ireland_bid_to_cover_20y.png) | [chart](ireland/ireland_auction_yield_20y.png) | [chart](ireland/ireland_accepted_20y.png) | – | [CSV](ireland/ireland_auction_20y_monthly.csv) |
-| [Italy](italy/) | [chart](italy/italy_bid_to_cover_20y.png) | [chart](italy/italy_auction_yield_20y.png) | [chart](italy/italy_accepted_20y.png) | – | [CSV](italy/italy_auction_20y_monthly.csv) |
-| [Lithuania](lithuania/) | [chart](lithuania/lithuania_bid_to_cover_20y.png) | [chart](lithuania/lithuania_auction_yield_20y.png) | [chart](lithuania/lithuania_accepted_20y.png) | – | [CSV](lithuania/lithuania_auction_20y_monthly.csv) |
-| [Netherlands](netherlands/) | – | [chart](netherlands/netherlands_auction_yield_20y.png) | [chart](netherlands/netherlands_accepted_20y.png) | – | [CSV](netherlands/netherlands_auction_20y_monthly.csv) |
-| [Norway](norway/) | [chart](norway/norway_bid_to_cover_20y.png) | [chart](norway/norway_auction_yield_20y.png) | [chart](norway/norway_accepted_20y.png) | – | [CSV](norway/norway_auction_20y_monthly.csv) |
-| [Poland](poland/) | [chart](poland/poland_bid_to_cover_20y.png) | [chart](poland/poland_auction_yield_20y.png) | [chart](poland/poland_accepted_20y.png) | – | [CSV](poland/poland_auction_20y_monthly.csv) |
-| [Slovakia](slovakia/) | [chart](slovakia/slovakia_bid_to_cover_20y.png) | [chart](slovakia/slovakia_auction_yield_20y.png) | [chart](slovakia/slovakia_accepted_20y.png) | – | [CSV](slovakia/slovakia_auction_20y_monthly.csv) |
-| [Slovenia](slovenia/) | – | [chart](slovenia/slovenia_auction_yield_20y.png) | [chart](slovenia/slovenia_accepted_20y.png) | – | [CSV](slovenia/slovenia_auction_20y_monthly.csv) |
-| [South Korea](korea/) | [chart](korea/korea_bid_to_cover_20y.png) | [chart](korea/korea_auction_yield_20y.png) | [chart](korea/korea_accepted_20y.png) | – | [CSV](korea/korea_auction_20y_monthly.csv) |
-| [Spain](spain/) | [chart](spain/spain_bid_to_cover_20y.png) | [chart](spain/spain_auction_yield_20y.png) | [chart](spain/spain_accepted_20y.png) | – | [CSV](spain/spain_auction_20y_monthly.csv) |
-| [Switzerland](switzerland/) | [chart](switzerland/switzerland_bid_to_cover_20y.png) | [chart](switzerland/switzerland_auction_yield_20y.png) | [chart](switzerland/switzerland_accepted_20y.png) | – | [CSV](switzerland/switzerland_auction_20y_monthly.csv) |
-| [European Union](eu/) | [chart](eu/eu_bid_to_cover_20y.png) | [chart](eu/eu_auction_yield_20y.png) | [chart](eu/eu_accepted_20y.png) | – | [CSV](eu/eu_auction_20y_monthly.csv) |
+A dash means the country doesn't publish that measure (or, for market yields,
+that no free daily source was found).
+
+| Country | Recent yields | Recent auctions | Daily market yields | Bid-to-cover (20y) | Auction yield (20y) | Volume (20y) | Central bank share (20y) | Monthly data (20y) |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| [United States](us/) | [chart](us/us_recent_yield_12m.png) | [CSV](us/us_recent_auctions_12m.csv) | [CSV](us/us_market_yields_12m.csv) | [chart](us/us_bid_to_cover_20y.png) | [chart](us/us_auction_yield_20y.png) | [chart](us/us_accepted_20y.png) | [chart](us/us_central_bank_share_20y.png) | [CSV](us/us_auction_20y_monthly.csv) |
+| [Canada](canada/) | [chart](canada/canada_recent_yield_12m.png) | [CSV](canada/canada_recent_auctions_12m.csv) | [CSV](canada/canada_market_yields_12m.csv) | [chart](canada/canada_bid_to_cover_20y.png) | [chart](canada/canada_auction_yield_20y.png) | [chart](canada/canada_accepted_20y.png) | [chart](canada/canada_central_bank_share_20y.png) | [CSV](canada/canada_auction_20y_monthly.csv) |
+| [United Kingdom](uk/) | [chart](uk/uk_recent_yield_12m.png) | [CSV](uk/uk_recent_auctions_12m.csv) | [CSV](uk/uk_market_yields_12m.csv) | [chart](uk/uk_bid_to_cover_20y.png) | [chart](uk/uk_auction_yield_20y.png) | [chart](uk/uk_accepted_20y.png) | – | [CSV](uk/uk_auction_20y_monthly.csv) |
+| [Germany](germany/) | [chart](germany/germany_recent_yield_12m.png) | [CSV](germany/germany_recent_auctions_12m.csv) | [CSV](germany/germany_market_yields_12m.csv) | [chart](germany/germany_bid_to_cover_20y.png) | [chart](germany/germany_auction_yield_20y.png) | [chart](germany/germany_accepted_20y.png) | – | [CSV](germany/germany_auction_20y_monthly.csv) |
+| [Japan](japan/) | [chart](japan/japan_recent_yield_12m.png) | [CSV](japan/japan_recent_auctions_12m.csv) | [CSV](japan/japan_market_yields_12m.csv) | [chart](japan/japan_bid_to_cover_20y.png) | [chart](japan/japan_auction_yield_20y.png) | [chart](japan/japan_accepted_20y.png) | – | [CSV](japan/japan_auction_20y_monthly.csv) |
+| [Austria](austria/) | [chart](austria/austria_recent_yield_12m.png) | [CSV](austria/austria_recent_auctions_12m.csv) | – | – | [chart](austria/austria_auction_yield_20y.png) | [chart](austria/austria_accepted_20y.png) | – | [CSV](austria/austria_auction_20y_monthly.csv) |
+| [Belgium](belgium/) | [chart](belgium/belgium_recent_yield_12m.png) | [CSV](belgium/belgium_recent_auctions_12m.csv) | [CSV](belgium/belgium_market_yields_12m.csv) | [chart](belgium/belgium_bid_to_cover_20y.png) | [chart](belgium/belgium_auction_yield_20y.png) | [chart](belgium/belgium_accepted_20y.png) | – | [CSV](belgium/belgium_auction_20y_monthly.csv) |
+| [Czech Republic](czechia/) | [chart](czechia/czechia_recent_yield_12m.png) | [CSV](czechia/czechia_recent_auctions_12m.csv) | – | [chart](czechia/czechia_bid_to_cover_20y.png) | [chart](czechia/czechia_auction_yield_20y.png) | [chart](czechia/czechia_accepted_20y.png) | – | [CSV](czechia/czechia_auction_20y_monthly.csv) |
+| [Denmark](denmark/) | [chart](denmark/denmark_recent_yield_12m.png) | [CSV](denmark/denmark_recent_auctions_12m.csv) | – | [chart](denmark/denmark_bid_to_cover_20y.png) | [chart](denmark/denmark_auction_yield_20y.png) | [chart](denmark/denmark_accepted_20y.png) | – | [CSV](denmark/denmark_auction_20y_monthly.csv) |
+| [Finland](finland/) | [chart](finland/finland_recent_yield_12m.png) | [CSV](finland/finland_recent_auctions_12m.csv) | – | [chart](finland/finland_bid_to_cover_20y.png) | [chart](finland/finland_auction_yield_20y.png) | [chart](finland/finland_accepted_20y.png) | – | [CSV](finland/finland_auction_20y_monthly.csv) |
+| [France](france/) | [chart](france/france_recent_yield_12m.png) | [CSV](france/france_recent_auctions_12m.csv) | – | [chart](france/france_bid_to_cover_20y.png) | [chart](france/france_auction_yield_20y.png) | [chart](france/france_accepted_20y.png) | – | [CSV](france/france_auction_20y_monthly.csv) |
+| [Greece](greece/) | [chart](greece/greece_recent_yield_12m.png) | [CSV](greece/greece_recent_auctions_12m.csv) | – | [chart](greece/greece_bid_to_cover_20y.png) | [chart](greece/greece_auction_yield_20y.png) | [chart](greece/greece_accepted_20y.png) | – | [CSV](greece/greece_auction_20y_monthly.csv) |
+| [Hungary](hungary/) | [chart](hungary/hungary_recent_yield_12m.png) | [CSV](hungary/hungary_recent_auctions_12m.csv) | [CSV](hungary/hungary_market_yields_12m.csv) | [chart](hungary/hungary_bid_to_cover_20y.png) | [chart](hungary/hungary_auction_yield_20y.png) | [chart](hungary/hungary_accepted_20y.png) | – | [CSV](hungary/hungary_auction_20y_monthly.csv) |
+| [Ireland](ireland/) | [chart](ireland/ireland_recent_yield_12m.png) | [CSV](ireland/ireland_recent_auctions_12m.csv) | – | [chart](ireland/ireland_bid_to_cover_20y.png) | [chart](ireland/ireland_auction_yield_20y.png) | [chart](ireland/ireland_accepted_20y.png) | – | [CSV](ireland/ireland_auction_20y_monthly.csv) |
+| [Italy](italy/) | [chart](italy/italy_recent_yield_12m.png) | [CSV](italy/italy_recent_auctions_12m.csv) | – | [chart](italy/italy_bid_to_cover_20y.png) | [chart](italy/italy_auction_yield_20y.png) | [chart](italy/italy_accepted_20y.png) | – | [CSV](italy/italy_auction_20y_monthly.csv) |
+| [Lithuania](lithuania/) | [chart](lithuania/lithuania_recent_yield_12m.png) | [CSV](lithuania/lithuania_recent_auctions_12m.csv) | – | [chart](lithuania/lithuania_bid_to_cover_20y.png) | [chart](lithuania/lithuania_auction_yield_20y.png) | [chart](lithuania/lithuania_accepted_20y.png) | – | [CSV](lithuania/lithuania_auction_20y_monthly.csv) |
+| [Netherlands](netherlands/) | [chart](netherlands/netherlands_recent_yield_12m.png) | [CSV](netherlands/netherlands_recent_auctions_12m.csv) | – | – | [chart](netherlands/netherlands_auction_yield_20y.png) | [chart](netherlands/netherlands_accepted_20y.png) | – | [CSV](netherlands/netherlands_auction_20y_monthly.csv) |
+| [Norway](norway/) | [chart](norway/norway_recent_yield_12m.png) | [CSV](norway/norway_recent_auctions_12m.csv) | [CSV](norway/norway_market_yields_12m.csv) | [chart](norway/norway_bid_to_cover_20y.png) | [chart](norway/norway_auction_yield_20y.png) | [chart](norway/norway_accepted_20y.png) | – | [CSV](norway/norway_auction_20y_monthly.csv) |
+| [Poland](poland/) | [chart](poland/poland_recent_yield_12m.png) | [CSV](poland/poland_recent_auctions_12m.csv) | – | [chart](poland/poland_bid_to_cover_20y.png) | [chart](poland/poland_auction_yield_20y.png) | [chart](poland/poland_accepted_20y.png) | – | [CSV](poland/poland_auction_20y_monthly.csv) |
+| [Slovakia](slovakia/) | [chart](slovakia/slovakia_recent_yield_12m.png) | [CSV](slovakia/slovakia_recent_auctions_12m.csv) | – | [chart](slovakia/slovakia_bid_to_cover_20y.png) | [chart](slovakia/slovakia_auction_yield_20y.png) | [chart](slovakia/slovakia_accepted_20y.png) | – | [CSV](slovakia/slovakia_auction_20y_monthly.csv) |
+| [Slovenia](slovenia/) | [chart](slovenia/slovenia_recent_yield_12m.png) | [CSV](slovenia/slovenia_recent_auctions_12m.csv) | – | – | [chart](slovenia/slovenia_auction_yield_20y.png) | [chart](slovenia/slovenia_accepted_20y.png) | – | [CSV](slovenia/slovenia_auction_20y_monthly.csv) |
+| [South Korea](korea/) | [chart](korea/korea_recent_yield_12m.png) | [CSV](korea/korea_recent_auctions_12m.csv) | – | [chart](korea/korea_bid_to_cover_20y.png) | [chart](korea/korea_auction_yield_20y.png) | [chart](korea/korea_accepted_20y.png) | – | [CSV](korea/korea_auction_20y_monthly.csv) |
+| [Spain](spain/) | [chart](spain/spain_recent_yield_12m.png) | [CSV](spain/spain_recent_auctions_12m.csv) | [CSV](spain/spain_market_yields_12m.csv) | [chart](spain/spain_bid_to_cover_20y.png) | [chart](spain/spain_auction_yield_20y.png) | [chart](spain/spain_accepted_20y.png) | – | [CSV](spain/spain_auction_20y_monthly.csv) |
+| [Switzerland](switzerland/) | [chart](switzerland/switzerland_recent_yield_12m.png) | [CSV](switzerland/switzerland_recent_auctions_12m.csv) | [CSV](switzerland/switzerland_market_yields_12m.csv) | [chart](switzerland/switzerland_bid_to_cover_20y.png) | [chart](switzerland/switzerland_auction_yield_20y.png) | [chart](switzerland/switzerland_accepted_20y.png) | – | [CSV](switzerland/switzerland_auction_20y_monthly.csv) |
+| [European Union](eu/) | [chart](eu/eu_recent_yield_12m.png) | [CSV](eu/eu_recent_auctions_12m.csv) | – | [chart](eu/eu_bid_to_cover_20y.png) | [chart](eu/eu_auction_yield_20y.png) | [chart](eu/eu_accepted_20y.png) | – | [CSV](eu/eu_auction_20y_monthly.csv) |

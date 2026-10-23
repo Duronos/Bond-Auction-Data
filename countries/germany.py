@@ -58,6 +58,31 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     )
 
 
+# Bundesbank daily yield curve for Federal securities (Svensson method), one
+# series per residual maturity in whole years.
+MARKET_URL = (
+    "https://api.statistiken.bundesbank.de/rest/data/BBSIS/"
+    "D.I.ZST.ZI.EUR.S1311.B.A604.R{years:02d}XX.R.A.A._Z._Z.A"
+    "?format=csv&lang=en&startPeriod={start}"
+)
+MARKET_YEARS = [1, 2, 3, 5, 7, 10, 15, 20, 30]
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    frames = []
+    for years in MARKET_YEARS:
+        response = requests.get(MARKET_URL.format(years=years, start=start.date()), timeout=120)
+        response.raise_for_status()
+        # A few metadata rows, then "date,value,flag" rows; weekends are ".".
+        df = pd.read_csv(io.StringIO(response.content.decode("utf-8-sig")), header=None,
+                         usecols=[0, 1], names=["date", "market_yield"])
+        frames.append(df.assign(tenor_months=years * 12.0))
+    df = pd.concat(frames, ignore_index=True)
+    df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
+    df["market_yield"] = pd.to_numeric(df["market_yield"], errors="coerce")
+    return df.dropna()
+
+
 COUNTRY = Country(
     code="germany",
     name="Germany",
@@ -66,4 +91,6 @@ COUNTRY = Country(
     volume_divisor=1e9,
     source="Bundesrepublik Deutschland – Finanzagentur",
     yield_note="Weighted average accepted yield.",
+    fetch_market=fetch_market,
+    market_source="Bundesbank daily yield curve for Federal securities (Svensson method)",
 )

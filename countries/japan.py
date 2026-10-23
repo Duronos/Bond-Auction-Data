@@ -82,6 +82,34 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     return df.drop_duplicates(subset=["auction_date", "maturity_date"], keep="last")
 
 
+# MOF's daily JGB yield curve (1 to 40 years): history up to the end of last
+# month, plus the current month in a separate file.
+MARKET_FILES = [
+    "https://www.mof.go.jp/english/policy/jgbs/reference/interest_rate/historical/jgbcme_all.csv",
+    "https://www.mof.go.jp/english/policy/jgbs/reference/interest_rate/jgbcme.csv",
+]
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    frames = []
+    for url in MARKET_FILES:
+        response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=120)
+        response.raise_for_status()
+        # Row 1 is a title; row 2 has "Date,1Y,2Y,...,40Y". Missing values are "-".
+        df = pd.read_csv(io.BytesIO(response.content), skiprows=1, encoding="latin-1")
+        frames.append(df.melt(id_vars="Date", var_name="label", value_name="market_yield"))
+    df = pd.concat(frames, ignore_index=True)
+    df = pd.DataFrame(
+        {
+            # The footnote rows aren't dates and drop out here.
+            "date": pd.to_datetime(df["Date"], format="%Y/%m/%d", errors="coerce"),
+            "tenor_months": pd.to_numeric(df["label"].str.rstrip("Y"), errors="coerce") * 12,
+            "market_yield": pd.to_numeric(df["market_yield"], errors="coerce"),
+        }
+    ).dropna()
+    return df[df["date"] >= start].drop_duplicates(subset=["date", "tenor_months"])
+
+
 COUNTRY = Country(
     code="japan",
     name="Japan",
@@ -90,4 +118,6 @@ COUNTRY = Country(
     volume_divisor=1e12,
     source="Ministry of Finance Japan",
     yield_note="Clearing yield (yield at the lowest accepted price).",
+    fetch_market=fetch_market,
+    market_source="Ministry of Finance daily JGB interest rates (1 to 40 years)",
 )

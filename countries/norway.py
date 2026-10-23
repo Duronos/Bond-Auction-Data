@@ -42,6 +42,27 @@ def fetch(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     )
 
 
+# Norges Bank's daily generic yields for government bonds (3-10 years) and
+# bills (3-12 months).
+MARKET_URL = (
+    "https://data.norges-bank.no/api/data/GOVT_GENERIC_RATES/B..GBON+GBILL"
+    "?format=csv&startPeriod={start}&locale=en"
+)
+
+
+def fetch_market(start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    df = pd.read_csv(io.StringIO(get(MARKET_URL.format(start=start.date())).text), sep=";")
+    # Tenor codes look like "6M" or "10Y".
+    tenor = df["TENOR"].str.extract(r"(\d+)([MY])")
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(df["TIME_PERIOD"]),
+            "tenor_months": pd.to_numeric(tenor[0]) * tenor[1].map({"M": 1, "Y": 12}),
+            "market_yield": pd.to_numeric(df["OBS_VALUE"], errors="coerce"),
+        }
+    ).dropna()
+
+
 COUNTRY = Country(
     code="norway",
     name="Norway",
@@ -50,4 +71,6 @@ COUNTRY = Country(
     volume_divisor=1e9,
     source="Norges Bank",
     yield_note="Effective yield.",
+    fetch_market=fetch_market,
+    market_source="Norges Bank generic government bond and bill yields",
 )
