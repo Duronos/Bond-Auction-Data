@@ -7,7 +7,8 @@ A copy of the latest run (`runs/2026-10-22_213542_20y/`), in two parts:
   [`auction_totals.csv`](auctions/auction_totals.csv) (auctions per country
   and maturity bucket).
 - [`market_yields/`](market_yields/): daily market yields, one folder per
-  country that publishes them (10 countries).
+  country that publishes them (10 countries), plus
+  [`global/`](market_yields/global/) (all of them together).
 
 - **Last 12 months**: every auction as it happened, plus the daily market
   yield where the country publishes one. Nothing is averaged.

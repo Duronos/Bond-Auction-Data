@@ -29,6 +29,10 @@ split into auction results and daily market yields:
     <country>/
         <country>_market_yields_12m.png  daily yields by maturity
         <country>_market_yields_12m.csv
+    global/
+        global_10year_market_yields_12m.png  10-year yields, a line per country
+        global_market_yields_grid_12m.png    one panel per country, a line per maturity
+        global_market_yields_12m.csv
 
 Install:
     pip install -r requirements.txt
@@ -58,8 +62,8 @@ import pandas as pd
 
 import countries
 from common import (
-    BUCKETS, country_plots, global_plots, global_recent_plot, make_monthly_data, market_plot,
-    prepare, recent_auctions, recent_plots, save_plot,
+    BUCKETS, country_plots, global_market_plots, global_plots, global_recent_plot,
+    make_monthly_data, market_plot, prepare, recent_auctions, recent_plots, save_plot,
 )
 
 # Rolling lookback window ending today.
@@ -195,6 +199,15 @@ def main():
     ).items():
         save_plot(plot, auction_dir / "global" / f"global_{chart}_{RECENT_MONTHS}m.png",
                   formula=formula)
+
+    markets = [m.assign(country=name) for name, _, m in all_recent if m is not None]
+    if markets:
+        markets = pd.concat(markets, ignore_index=True)
+        save_market(
+            market_dir / "global", "global", markets,
+            global_market_plots(markets, [c.name for c in countries.ALL],
+                                RECENT_START, END_DATE, RECENT_MONTHS),
+        )
 
     print("\nLatest month per country (all maturities, median bid-to-cover / yield):")
     latest = (

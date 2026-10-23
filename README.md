@@ -12,6 +12,22 @@ country publishes one, so moves between auctions show up too.
 
 ![10-year government bond yields: daily market vs every auction, last 12 months](results/auctions/global/global_10year_recent_yield_12m.png)
 
+## Market yields, all countries
+
+The daily yield on existing government bonds as they trade, for the 10
+countries that publish it free (see [Daily market yields](#daily-market-yields-10-countries)).
+
+![10-year government bond market yields, last 12 months](results/market_yields/global/global_10year_market_yields_12m.png)
+
+<details>
+<summary><b>Every maturity, by country</b> (click to open)</summary>
+
+![Government bond market yields by maturity, last 12 months](results/market_yields/global/global_market_yields_grid_12m.png)
+
+All the numbers: [global_market_yields_12m.csv](results/market_yields/global/global_market_yields_12m.csv)
+
+</details>
+
 ## Results by country
 
 Click a country to open its charts; click again to close it. Every chart and
@@ -631,6 +647,7 @@ runs/2026-10-22_213542_20y/
     global/                     every country together
   market_yields/
     us/  canada/  uk/ ...       daily market yields: chart + CSV (10 countries)
+    global/                     all of them together
 ```
 
 Change the lookback windows with `YEARS` (20-year charts) and `RECENT_MONTHS`

@@ -644,6 +644,74 @@ def market_plot(country: Country, market: pd.DataFrame, start, end, months: int)
     return {"market_yields": (plot, None)}
 
 
+def global_market_plots(markets: pd.DataFrame, country_order: list[str], start, end,
+                        months: int, tenor_months: int = 120) -> dict:
+    """
+    Daily market yields for every country that publishes them (`markets` has
+    a `country` column):
+      <tenor>_market_yields   one chart, a line per country at one maturity
+      market_yields_grid      one panel per country, a line per maturity
+    """
+    markets = markets[markets["date"] >= start]
+    label = tenor_label(tenor_months)
+    plots = {}
+
+    one = markets[markets["tenor_months"] == tenor_months].copy()
+    if not one.empty:
+        # Same colour and line style per country as on the other global charts.
+        colors, styles = country_styles(country_order)
+        one["country"] = pd.Categorical(one["country"], categories=country_order, ordered=True)
+        one["country"] = one["country"].cat.remove_unused_categories()
+        present = list(one["country"].cat.categories)
+        plot = (
+            ggplot(one, aes(x="date", y="market_yield", color="country", linetype="country"))
+            + geom_line(size=0.8)
+            + scale_color_manual(values={c: colors[c] for c in present}, name="Country")
+            + scale_linetype_manual(values={c: styles[c] for c in present}, name="Country")
+            + guides(color=guide_legend(ncol=5), linetype=guide_legend(ncol=5))
+            + scale_x_datetime(date_breaks="1 month", date_labels="%b %Y", limits=(start, end))
+            + labs(
+                title=f"{label.capitalize()} government bond market yields, last {months} months",
+                subtitle="Yield on existing bonds as they trade each day, every country with a free daily source",
+                x="Date", y="Market yield (%)",
+                caption=wrap("Each country's own published series (central bank or debt office): par, "
+                             "benchmark or fitted-curve yields. Switzerland's source is updated monthly, "
+                             "so its line stops at the end of last month."),
+            )
+            + copy.deepcopy(BASE_THEME)
+            + theme(legend_key_width=36)
+        )
+        plots[f"{label.replace('-', '')}_market_yields"] = (plot, None)
+
+    tenors = [t for t in MARKET_CHART_TENORS if t in set(markets["tenor_months"])]
+    grid = markets[markets["tenor_months"].isin(tenors)].copy()
+    if not grid.empty:
+        labels = [tenor_label(t) for t in tenors]
+        grid["maturity"] = pd.Categorical(grid["tenor_months"].map(tenor_label),
+                                          categories=labels, ordered=True)
+        grid["country"] = pd.Categorical(grid["country"], categories=country_order, ordered=True)
+        grid["country"] = grid["country"].cat.remove_unused_categories()
+        n_rows = -(-grid["country"].nunique() // 4)
+        plot = (
+            ggplot(grid, aes(x="date", y="market_yield", color="maturity"))
+            + geom_line(size=0.6)
+            + scale_color_manual(values=dict(zip(labels, SERIES_COLORS)), name="Maturity")
+            + scale_x_datetime(date_breaks="2 months", date_labels="%b %Y", limits=(start, end))
+            + labs(
+                title=f"Government bond market yields by maturity, last {months} months",
+                subtitle="One panel per country, a line per maturity; each panel has its own scale",
+                x="Date", y="Market yield (%)",
+                caption=wrap("Each country's own published series. Not every country publishes every "
+                             "maturity (e.g. the UK only 5, 10 and 20 years).", 170),
+            )
+            + copy.deepcopy(BASE_THEME)
+        )
+        plot += facet_wrap("country", ncol=4, scales="free_y")
+        plot += theme(figure_size=(14, 2.8 * n_rows + 2.2))
+        plots["market_yields_grid"] = (plot, None)
+    return plots
+
+
 def global_recent_plot(recents: list[tuple[str, pd.DataFrame, pd.DataFrame | None]],
                        country_order: list[str], start, end, months: int,
                        tenor_months: int = 120) -> dict:
