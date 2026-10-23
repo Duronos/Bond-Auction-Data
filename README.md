@@ -8,6 +8,9 @@ years, broken down by maturity.
 
 ![Government auction yields by country, 2006-2026](docs/images/global_auction_yield_grid_20y.png)
 
+**Every country's charts and monthly data from the latest run are in
+[`results/`](results/).**
+
 ## Run it
 
 ```bash
@@ -164,6 +167,7 @@ countries/
   <country>.py       one loader per country (eu.py for the European Union)
 cache/               downloaded auction pages and lookups for the EU, South Korea,
                      Slovakia and Lithuania (gitignored); rebuilt automatically
+results/             copy of the latest run: every country's charts and monthly CSV
 docs/images/         example charts shown in this README
 ```
 
